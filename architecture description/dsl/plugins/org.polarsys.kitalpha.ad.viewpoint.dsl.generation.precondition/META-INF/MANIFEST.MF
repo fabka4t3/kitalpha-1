@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Precondition
+Bundle-Name: %BundleName
 Bundle-SymbolicName: org.polarsys.kitalpha.ad.viewpoint.dsl.generation.precondition;singleton:=true
-Bundle-Version: 5.0.1.qualifier
+Bundle-Version: 7.0.0.qualifier
 Bundle-Activator: org.polarsys.kitalpha.ad.viewpoint.dsl.generation.precondition.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -13,5 +13,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.sirius,
  org.polarsys.kitalpha.ad.services,
  org.polarsys.kitalpha.ad.integration.sirius
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
+Bundle-Localization: plugin
+Bundle-Vendor: %BundleVendor

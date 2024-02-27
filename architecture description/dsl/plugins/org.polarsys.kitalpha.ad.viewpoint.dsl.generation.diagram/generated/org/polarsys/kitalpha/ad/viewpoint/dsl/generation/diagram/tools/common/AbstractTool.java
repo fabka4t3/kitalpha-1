@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.1.201902111324
+//Generated with EGF 1.6.4.202309111303
 package org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.tools.common;
 
 import java.util.*;
@@ -17,97 +17,98 @@ import org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Action;
 import org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.OpenAction;
 
 public class AbstractTool
-		extends org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.common.AbstractDiagramPattern {
+    extends org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.common.AbstractDiagramPattern {
 
-	public AbstractTool() {
-		//Here is the constructor
-		// add initialisation of the pattern variables (declaration has been already done).
-	}
+  public AbstractTool() {
+    //Here is the constructor
+    // add initialisation of the pattern variables (declaration has been already done).
 
-	public void generate(Object argument) throws Exception {
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		IQuery.ParameterDescription paramDesc = null;
-		Map<String, String> queryCtx = null;
-		Node.Container currentNode = ctx.getNode();
+  }
 
-		if (preCondition(ctx))
-			orchestration((PatternContext) argument);
+  public void generate(Object argument) throws Exception {
+    InternalPatternContext ctx = (InternalPatternContext) argument;
+    IQuery.ParameterDescription paramDesc = null;
+    Map<String, String> queryCtx = null;
+    Node.Container currentNode = ctx.getNode();
 
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-		}
-	}
+    if (preCondition(ctx))
+      orchestration((PatternContext) argument);
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		Node.Container currentNode = ictx.getNode();
-		super.orchestration(new SuperOrchestrationContext(ictx));
-		method_createConcretTool(new StringBuffer(), ictx);
-		method_setToolPrecondition(new StringBuffer(), ictx);
-		method_addToolToToolSection(new StringBuffer(), ictx);
-		ictx.setNode(currentNode);
-		return null;
-	}
+    if (ctx.useReporter()) {
+      ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+    }
+  }
 
-	protected void method_createConcretTool(final StringBuffer out, final PatternContext ctx) throws Exception {
-		//default content
+  public String orchestration(PatternContext ctx) throws Exception {
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    Node.Container currentNode = ictx.getNode();
+    super.orchestration(new SuperOrchestrationContext(ictx));
+    method_createConcretTool(new StringBuffer(), ictx);
+    method_setToolPrecondition(new StringBuffer(), ictx);
+    method_addToolToToolSection(new StringBuffer(), ictx);
+    ictx.setNode(currentNode);
+    return null;
+  }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "createConcretTool", out.toString());
-	}
+  protected void method_createConcretTool(final StringBuffer out, final PatternContext ctx) throws Exception {
+    //default content
 
-	protected void method_addToolToToolSection(final StringBuffer out, final PatternContext ctx) throws Exception {
-		if (dslvpToolElement != null) {
-			EObject dslvpParent = dslvpToolElement.eContainer();
-			EObject doremiParent = GenerationUtil.getDoremiElement(dslvpParent);
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "createConcretTool", out.toString());
+  }
 
-			if (doremiParent instanceof ToolSection) {
-				ToolSection toolSection = (ToolSection) doremiParent;
-				toolSection.getOwnedTools().add((ToolEntry) abstractToolDescription);
-			}
-		}
+  protected void method_addToolToToolSection(final StringBuffer out, final PatternContext ctx) throws Exception {
+    if (dslvpToolElement != null) {
+      EObject dslvpParent = dslvpToolElement.eContainer();
+      EObject doremiParent = GenerationUtil.getDoremiElement(dslvpParent);
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "addToolToToolSection", out.toString());
-	}
+      if (doremiParent instanceof ToolSection) {
+        ToolSection toolSection = (ToolSection) doremiParent;
+        toolSection.getOwnedTools().add((ToolEntry) abstractToolDescription);
+      }
+    }
 
-	protected void method_setToolPrecondition(final StringBuffer out, final PatternContext ctx) throws Exception {
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "addToolToToolSection", out.toString());
+  }
 
-		if (dslvpToolElement != null && abstractToolDescription != null) {
-			String precondition = null;
+  protected void method_setToolPrecondition(final StringBuffer out, final PatternContext ctx) throws Exception {
 
-			if (dslvpToolElement instanceof OpenAction) {
-				precondition = ((OpenAction) dslvpToolElement).getPrecondition();
-			}
+    if (dslvpToolElement != null && abstractToolDescription != null) {
+      String precondition = null;
 
-			if (dslvpToolElement instanceof Action) {
-				precondition = ((Action) dslvpToolElement).getPrecondition();
-			}
+      if (dslvpToolElement instanceof OpenAction) {
+        precondition = ((OpenAction) dslvpToolElement).getPrecondition();
+      }
 
-			if (precondition != null && precondition.isEmpty() == false) {
-				((AbstractToolDescription) abstractToolDescription).setPrecondition(precondition);
-			}
-		}
+      if (dslvpToolElement instanceof Action) {
+        precondition = ((Action) dslvpToolElement).getPrecondition();
+      }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "setToolPrecondition", out.toString());
-	}
+      if (precondition != null && precondition.isEmpty() == false) {
+        ((AbstractToolDescription) abstractToolDescription).setPrecondition(precondition);
+      }
+    }
 
-	protected org.eclipse.emf.ecore.EObject abstractToolDescription;
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "setToolPrecondition", out.toString());
+  }
 
-	public void set_abstractToolDescription(org.eclipse.emf.ecore.EObject abstractToolDescription) {
-		this.abstractToolDescription = abstractToolDescription;
-	}
+  protected org.eclipse.emf.ecore.EObject abstractToolDescription;
 
-	protected org.eclipse.emf.ecore.EObject dslvpToolElement;
+  public void set_abstractToolDescription(org.eclipse.emf.ecore.EObject abstractToolDescription) {
+    this.abstractToolDescription = abstractToolDescription;
+  }
 
-	public void set_dslvpToolElement(org.eclipse.emf.ecore.EObject dslvpToolElement) {
-		this.dslvpToolElement = dslvpToolElement;
-	}
+  protected org.eclipse.emf.ecore.EObject dslvpToolElement;
 
-	public Map<String, Object> getParameters() {
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		return parameters;
-	}
+  public void set_dslvpToolElement(org.eclipse.emf.ecore.EObject dslvpToolElement) {
+    this.dslvpToolElement = dslvpToolElement;
+  }
+
+  public Map<String, Object> getParameters() {
+    Map<String, Object> parameters = new HashMap<String, Object>();
+    return parameters;
+  }
 
 }

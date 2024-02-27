@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.polarsys.kitalpha.transposer.scheduler
-Bundle-Version: 5.0.1.qualifier
+Bundle-Version: 7.0.0.qualifier
 Bundle-Vendor: %providerName
 Require-Bundle: org.polarsys.kitalpha.transposer.analyzer,
  org.eclipse.core.runtime
@@ -10,5 +10,5 @@ Export-Package: org.polarsys.kitalpha.transposer.scheduler.api,
  org.polarsys.kitalpha.transposer.scheduler.generic,
  org.polarsys.kitalpha.transposer.scheduler.scheduler.impl,
  org.polarsys.kitalpha.transposer.scheduler.taskwrapper.impl
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-Localization: plugin

@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.1.201902111324
+//Generated with EGF 1.6.4.202309111303
 package org.polarsys.kitalpha.ad.viewpoint.dsl.generation.desc.clazz.content;
 
 import java.util.*;
@@ -18,82 +18,83 @@ import org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc.ExternalSuperClass
 import org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc.LocalSuperClass;
 
 public class ClassSuperClass
-		extends org.polarsys.kitalpha.ad.viewpoint.dsl.generation.desc.abstracts.ClassAbstractPattern {
+    extends org.polarsys.kitalpha.ad.viewpoint.dsl.generation.desc.abstracts.ClassAbstractPattern {
 
-	public ClassSuperClass() {
-		//Here is the constructor
-		// add initialisation of the pattern variables (declaration has been already done).
-	}
+  public ClassSuperClass() {
+    //Here is the constructor
+    // add initialisation of the pattern variables (declaration has been already done).
 
-	public void generate(Object argument) throws Exception {
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		IQuery.ParameterDescription paramDesc = null;
-		Map<String, String> queryCtx = null;
-		Node.Container currentNode = ctx.getNode();
-		List<Object> parameterList = null;
-		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+  }
 
-		for (Object parameterParameter : parameterList) {
+  public void generate(Object argument) throws Exception {
+    InternalPatternContext ctx = (InternalPatternContext) argument;
+    IQuery.ParameterDescription paramDesc = null;
+    Map<String, String> queryCtx = null;
+    Node.Container currentNode = ctx.getNode();
+    List<Object> parameterList = null;
+    //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-			this.parameter = (org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc.Class) parameterParameter;
+    for (Object parameterParameter : parameterList) {
 
-			if (preCondition(ctx)) {
-				ctx.setNode(new Node.Container(currentNode, getClass()));
-				orchestration((PatternContext) argument);
+      this.parameter = (org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc.Class) parameterParameter;
 
-			}
-		}
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-		}
-	}
+      if (preCondition(ctx)) {
+        ctx.setNode(new Node.Container(currentNode, getClass()));
+        orchestration((PatternContext) argument);
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		Node.Container currentNode = ictx.getNode();
-		super.orchestration(new SuperOrchestrationContext(ictx));
-		method_linkToSuperClass(new StringBuffer(), ictx);
-		ictx.setNode(currentNode);
-		if (ictx.useReporter()) {
-			Map<String, Object> parameterValues = new HashMap<String, Object>();
-			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-		}
-		return null;
-	}
+      }
+    }
+    if (ctx.useReporter()) {
+      ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+    }
+  }
 
-	protected void method_linkToSuperClass(final StringBuffer out, final PatternContext ctx) throws Exception {
-		EList<AbstractSuperClass> superClasses = parameter.getInheritences();
+  public String orchestration(PatternContext ctx) throws Exception {
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    Node.Container currentNode = ictx.getNode();
+    super.orchestration(new SuperOrchestrationContext(ictx));
+    method_linkToSuperClass(new StringBuffer(), ictx);
+    ictx.setNode(currentNode);
+    if (ictx.useReporter()) {
+      Map<String, Object> parameterValues = new HashMap<String, Object>();
+      parameterValues.put("parameter", this.parameter);
+      String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+      String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
+      ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+    }
+    return null;
+  }
 
-		EList<EClass> superEClasses = new BasicEList<EClass>();
+  protected void method_linkToSuperClass(final StringBuffer out, final PatternContext ctx) throws Exception {
+    EList<AbstractSuperClass> superClasses = parameter.getInheritences();
 
-		for (AbstractSuperClass abstractSuperClass : superClasses) {
-			if (abstractSuperClass instanceof ExternalSuperClass)
-				superEClasses.add(((ExternalSuperClass) abstractSuperClass).getSuperClass());
+    EList<EClass> superEClasses = new BasicEList<EClass>();
 
-			if (abstractSuperClass instanceof LocalSuperClass) {
-				Class clazz = ((LocalSuperClass) abstractSuperClass).getSuperClass();
-				String className = clazz.getName();
-				EClass eClass = (EClass) ECoreResourceManager.INSTANCE.getEPackage().getEClassifier(className);
-				superEClasses.add(eClass);
-			}
-		}
+    for (AbstractSuperClass abstractSuperClass : superClasses) {
+      if (abstractSuperClass instanceof ExternalSuperClass)
+        superEClasses.add(((ExternalSuperClass) abstractSuperClass).getSuperClass());
 
-		for (EClass eClass : superEClasses) {
-			EClass clazz = PlatformEClassesManager.INSTANCE.getEClassesWithPlatformURI(eClass);
-			curEClass.getESuperTypes().add(clazz);
-		}
+      if (abstractSuperClass instanceof LocalSuperClass) {
+        Class clazz = ((LocalSuperClass) abstractSuperClass).getSuperClass();
+        String className = clazz.getName();
+        EClass eClass = (EClass) ECoreResourceManager.INSTANCE.getEPackage().getEClassifier(className);
+        superEClasses.add(eClass);
+      }
+    }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "linkToSuperClass", out.toString());
-	}
+    for (EClass eClass : superEClasses) {
+      EClass clazz = PlatformEClassesManager.INSTANCE.getEClassesWithPlatformURI(eClass);
+      curEClass.getESuperTypes().add(clazz);
+    }
 
-	public Map<String, Object> getParameters() {
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("parameter", this.parameter);
-		return parameters;
-	}
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "linkToSuperClass", out.toString());
+  }
+
+  public Map<String, Object> getParameters() {
+    Map<String, Object> parameters = new HashMap<String, Object>();
+    parameters.put("parameter", this.parameter);
+    return parameters;
+  }
 
 }

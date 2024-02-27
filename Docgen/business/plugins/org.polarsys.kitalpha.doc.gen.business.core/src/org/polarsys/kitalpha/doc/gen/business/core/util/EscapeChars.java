@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2014, 2020 Thales Global Services S.A.S.
+ * Copyright (c) 2014, 2021 Thales Global Services S.A.S.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0
@@ -19,6 +19,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.draw2d.text.TextFlow;
+import org.polarsys.kitalpha.doc.gen.business.core.Activator;
+import org.polarsys.kitalpha.doc.gen.business.core.messages.Messages;
 
 /**
  * Convenience methods for escaping special characters related to HTML, XML, and
@@ -54,6 +56,7 @@ import org.eclipse.draw2d.text.TextFlow;
 public final class EscapeChars {
 
 	private static final String AND_CHARACTER = "&amp;";
+	public static final String NULL_STRING = "null";
 	/**
 	 * Escape characters for text appearing in HTML markup.
 	 * 
@@ -212,6 +215,10 @@ public final class EscapeChars {
 	 */
 	public static String forHTML(String aText) {
 		final StringBuilder result = new StringBuilder();
+		if (aText == null) {
+			Activator.logWarning(Messages.warning_TextReplacedWithNull);
+			return NULL_STRING;
+		}
 		final StringCharacterIterator iterator = new StringCharacterIterator(
 				aText);
 		char character = iterator.current();

@@ -4,7 +4,7 @@ Bundle-Name: %BundleName
 Bundle-Vendor: %BundleVendor
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.polarsys.kitalpha.ad.viewpoint.dsl.generation.core;singleton:=true
-Bundle-Version: 5.0.1.qualifier
+Bundle-Version: 7.0.0.qualifier
 Require-Bundle: org.eclipse.egf.pattern,
  org.eclipse.egf.pattern.ftask;visibility:=reexport,
  org.eclipse.egf.model.ftask;visibility:=reexport,
@@ -21,7 +21,7 @@ Require-Bundle: org.eclipse.egf.pattern,
  org.polarsys.kitalpha.ad.viewpoint.dsl.generation.provider,
  org.polarsys.kitalpha.ad.viewpoint.dsl.generation.event,
  org.polarsys.kitalpha.ad.viewpoint.dsl.generation.common
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: org.polarsys.kitalpha.ad.viewpoint.dsl.generation.core.extension,
  org.polarsys.kitalpha.ad.viewpoint.dsl.generation.core.task,
  org.polarsys.kitalpha.ad.viewpoint.dsl.generation.core.util.task,

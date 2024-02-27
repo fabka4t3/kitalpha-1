@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
-Bundle-Version: 5.0.1.qualifier
+Bundle-Version: 7.0.0.qualifier
 Bundle-SymbolicName: org.polarsys.kitalpha.ad.viewpoint.dsl.cs.text.diagram.ui;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.polarsys.kitalpha.ad.viewpoint.dsl.cs.text.diagram;visibility:=reexport,
@@ -28,7 +28,7 @@ Import-Package: org.apache.log4j,
  org.polarsys.kitalpha.ad.viewpoint.dsl.as.desc.helper.configuration,
  org.polarsys.kitalpha.ad.viewpoint.dsl.as.diagram.helper.specification,
  org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: org.polarsys.kitalpha.ad.viewpoint.dsl.cs.text.ui.contentassist,
  org.polarsys.kitalpha.ad.viewpoint.dsl.cs.text.ui.contentassist.antlr,
  org.polarsys.kitalpha.ad.viewpoint.dsl.cs.text.ui.contentassist.template,

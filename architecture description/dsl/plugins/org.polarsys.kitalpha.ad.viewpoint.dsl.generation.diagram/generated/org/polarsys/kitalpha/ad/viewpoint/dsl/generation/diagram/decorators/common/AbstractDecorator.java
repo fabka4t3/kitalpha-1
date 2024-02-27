@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.1.201902111324
+//Generated with EGF 1.6.4.qualifier
 package org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.decorators.common;
 
 import java.util.*;
@@ -15,110 +15,111 @@ import org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.util.Generation
 import org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.util.IconPathHelper;
 
 public class AbstractDecorator
-		extends org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.common.AbstractDiagramPattern {
+    extends org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.common.AbstractDiagramPattern {
 
-	public AbstractDecorator() {
-		//Here is the constructor
-		// add initialisation of the pattern variables (declaration has been already done).
-	}
+  public AbstractDecorator() {
+    //Here is the constructor
+    // add initialisation of the pattern variables (declaration has been already done).
 
-	public void generate(Object argument) throws Exception {
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		IQuery.ParameterDescription paramDesc = null;
-		Map<String, String> queryCtx = null;
-		Node.Container currentNode = ctx.getNode();
+  }
 
-		if (preCondition(ctx))
-			orchestration((PatternContext) argument);
+  public void generate(Object argument) throws Exception {
+    InternalPatternContext ctx = (InternalPatternContext) argument;
+    IQuery.ParameterDescription paramDesc = null;
+    Map<String, String> queryCtx = null;
+    Node.Container currentNode = ctx.getNode();
 
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-		}
-	}
+    if (preCondition(ctx))
+      orchestration((PatternContext) argument);
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		Node.Container currentNode = ictx.getNode();
-		super.orchestration(new SuperOrchestrationContext(ictx));
-		method_createSiriusDecorator(new StringBuffer(), ictx);
-		method_initializeVariable(new StringBuffer(), ictx);
-		method_addDecorator2DecoratorSet(new StringBuffer(), ictx);
-		method_setCommonData(new StringBuffer(), ictx);
-		ictx.setNode(currentNode);
-		return null;
-	}
+    if (ctx.useReporter()) {
+      ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+    }
+  }
 
-	protected void method_createSiriusDecorator(final StringBuffer out, final PatternContext ctx) throws Exception {
-		//default content
+  public String orchestration(PatternContext ctx) throws Exception {
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    Node.Container currentNode = ictx.getNode();
+    super.orchestration(new SuperOrchestrationContext(ictx));
+    method_createSiriusDecorator(new StringBuffer(), ictx);
+    method_initializeVariable(new StringBuffer(), ictx);
+    method_addDecorator2DecoratorSet(new StringBuffer(), ictx);
+    method_setCommonData(new StringBuffer(), ictx);
+    ictx.setNode(currentNode);
+    return null;
+  }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "createSiriusDecorator", out.toString());
-	}
+  protected void method_createSiriusDecorator(final StringBuffer out, final PatternContext ctx) throws Exception {
+    //default content
 
-	protected void method_addDecorator2DecoratorSet(final StringBuffer out, final PatternContext ctx) throws Exception {
-		if (vpdslDecorator != null && siriusDecorator != null) {
-			EObject dslvpParent = vpdslDecorator.eContainer();
-			EObject doremiParent = GenerationUtil.getDoremiElement(dslvpParent);
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "createSiriusDecorator", out.toString());
+  }
 
-			if (doremiParent instanceof DecorationDescriptionsSet) {
-				DecorationDescriptionsSet toolSection = (DecorationDescriptionsSet) doremiParent;
-				toolSection.getDecorationDescriptions().add((DecorationDescription) siriusDecorator);
-			}
-		}
+  protected void method_addDecorator2DecoratorSet(final StringBuffer out, final PatternContext ctx) throws Exception {
+    if (vpdslDecorator != null && siriusDecorator != null) {
+      EObject dslvpParent = vpdslDecorator.eContainer();
+      EObject doremiParent = GenerationUtil.getDoremiElement(dslvpParent);
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "addDecorator2DecoratorSet", out.toString());
-	}
+      if (doremiParent instanceof DecorationDescriptionsSet) {
+        DecorationDescriptionsSet toolSection = (DecorationDescriptionsSet) doremiParent;
+        toolSection.getDecorationDescriptions().add((DecorationDescription) siriusDecorator);
+      }
+    }
 
-	protected void method_setCommonData(final StringBuffer out, final PatternContext ctx) throws Exception {
-		siriusDecorator.setName(vpdslDecorator.getName());
-		siriusDecorator.setPosition(vpdslDecorator.getPosition());
-		siriusDecorator.setDistributionDirection(vpdslDecorator.getDirection());
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "addDecorator2DecoratorSet", out.toString());
+  }
 
-		if (vpdslDecorator.getIcon() != null && vpdslDecorator.getIcon().trim().length() > 0) {
-			String icon_path = IconPathHelper.computeDslIconPath(vpdslDecorator.getIcon(), vpdslDecorator);
-			if (icon_path != null && icon_path.trim().length() > 0) {
-				siriusDecorator.setImageExpression(icon_path);
-			}
-			IconPathHelper.copyIconFile(vpdslDecorator.getIcon(), vpdslDecorator);
-		}
+  protected void method_setCommonData(final StringBuffer out, final PatternContext ctx) throws Exception {
+    siriusDecorator.setName(vpdslDecorator.getName());
+    siriusDecorator.setPosition(vpdslDecorator.getPosition());
+    siriusDecorator.setDistributionDirection(vpdslDecorator.getDirection());
 
-		ExpressionElement precondition = vpdslDecorator.getPrecondition();
-		if (precondition instanceof StringElement) {
-			siriusDecorator.setPreconditionExpression(((StringElement) precondition).getValue());
-		}
+    if (vpdslDecorator.getIcon() != null && vpdslDecorator.getIcon().trim().length() > 0) {
+      String icon_path = IconPathHelper.computeDslIconPath(vpdslDecorator.getIcon(), vpdslDecorator);
+      if (icon_path != null && icon_path.trim().length() > 0) {
+        siriusDecorator.setImageExpression(icon_path);
+      }
+      IconPathHelper.copyIconFile(vpdslDecorator.getIcon(), vpdslDecorator);
+    }
 
-		ExpressionElement tooltip = vpdslDecorator.getTooltip();
-		if (tooltip instanceof StringElement) {
-			siriusDecorator.setTooltipExpression(((StringElement) tooltip).getValue());
-		}
+    ExpressionElement precondition = vpdslDecorator.getPrecondition();
+    if (precondition instanceof StringElement) {
+      siriusDecorator.setPreconditionExpression(((StringElement) precondition).getValue());
+    }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "setCommonData", out.toString());
-	}
+    ExpressionElement tooltip = vpdslDecorator.getTooltip();
+    if (tooltip instanceof StringElement) {
+      siriusDecorator.setTooltipExpression(((StringElement) tooltip).getValue());
+    }
 
-	protected void method_initializeVariable(final StringBuffer out, final PatternContext ctx) throws Exception {
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "setCommonData", out.toString());
+  }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "initializeVariable", out.toString());
-	}
+  protected void method_initializeVariable(final StringBuffer out, final PatternContext ctx) throws Exception {
 
-	protected org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.AbstractDecorator vpdslDecorator;
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "initializeVariable", out.toString());
+  }
 
-	public void set_vpdslDecorator(
-			org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.AbstractDecorator vpdslDecorator) {
-		this.vpdslDecorator = vpdslDecorator;
-	}
+  protected org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.AbstractDecorator vpdslDecorator;
 
-	protected org.eclipse.sirius.viewpoint.description.DecorationDescription siriusDecorator;
+  public void set_vpdslDecorator(
+      org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.AbstractDecorator vpdslDecorator) {
+    this.vpdslDecorator = vpdslDecorator;
+  }
 
-	public void set_siriusDecorator(org.eclipse.sirius.viewpoint.description.DecorationDescription siriusDecorator) {
-		this.siriusDecorator = siriusDecorator;
-	}
+  protected org.eclipse.sirius.viewpoint.description.DecorationDescription siriusDecorator;
 
-	public Map<String, Object> getParameters() {
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		return parameters;
-	}
+  public void set_siriusDecorator(org.eclipse.sirius.viewpoint.description.DecorationDescription siriusDecorator) {
+    this.siriusDecorator = siriusDecorator;
+  }
+
+  public Map<String, Object> getParameters() {
+    Map<String, Object> parameters = new HashMap<String, Object>();
+    return parameters;
+  }
 
 }

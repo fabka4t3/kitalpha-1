@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.1.201906060805
+//Generated with EGF 1.6.4.202309111303
 package org.polarsys.kitalpha.emde.genchain.extension;
 
 import java.util.HashMap;
@@ -28,102 +28,102 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 
 public class EmdeCdoGenerationPattern {
 
-	public EmdeCdoGenerationPattern() {
-		//Here is the constructor
-		// add initialisation of the pattern variables (declaration has been already done).
-		activity = "platform:/plugin/org.polarsys.kitalpha.emde.egf/egf/eMDE_EMF_Extension.fcore#_pL9xED5HEeiGQ4OFxriD0Q";
-	}
+  public EmdeCdoGenerationPattern() {
+    //Here is the constructor
+    // add initialisation of the pattern variables (declaration has been already done).
+    activity = "platform:/plugin/org.polarsys.kitalpha.emde.egf/egf/eMDE_EMF_Extension.fcore#_pL9xED5HEeiGQ4OFxriD0Q";
 
-	public void generate(Object argument) throws Exception {
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		IQuery.ParameterDescription paramDesc = null;
-		Map<String, String> queryCtx = null;
-		Node.Container currentNode = ctx.getNode();
-		List<Object> parameterList = null;
-		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+  }
 
-		for (Object parameterParameter : parameterList) {
+  public void generate(Object argument) throws Exception {
+    InternalPatternContext ctx = (InternalPatternContext) argument;
+    IQuery.ParameterDescription paramDesc = null;
+    Map<String, String> queryCtx = null;
+    Node.Container currentNode = ctx.getNode();
+    List<Object> parameterList = null;
+    //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-			this.parameter = (org.polarsys.kitalpha.emde.genchain.extension.model.EmdeCdoGeneration) parameterParameter;
+    for (Object parameterParameter : parameterList) {
 
-			if (preCondition(ctx)) {
-				ctx.setNode(new Node.Container(currentNode, getClass()));
-				orchestration((PatternContext) argument);
+      this.parameter = (org.polarsys.kitalpha.emde.genchain.extension.model.EmdeCdoGeneration) parameterParameter;
 
-			}
-		}
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-		}
-	}
+      if (preCondition(ctx)) {
+        ctx.setNode(new Node.Container(currentNode, getClass()));
+        orchestration((PatternContext) argument);
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		Node.Container currentNode = ictx.getNode();
-		method_body(new StringBuffer(), ictx);
-		ictx.setNode(currentNode);
-		if (ictx.useReporter()) {
-			Map<String, Object> parameterValues = new HashMap<String, Object>();
-			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-		}
-		return null;
-	}
+      }
+    }
+    if (ctx.useReporter()) {
+      ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+    }
+  }
 
-	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
-		Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx
-				.getValue(FcoreBuilderConstants.CURRENT_FCORE);
-		FactoryComponent fc = fcs.get((GenerationElement) (parameter.eContainer()));
+  public String orchestration(PatternContext ctx) throws Exception {
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    Node.Container currentNode = ictx.getNode();
+    method_body(new StringBuffer(), ictx);
+    ictx.setNode(currentNode);
+    if (ictx.useReporter()) {
+      Map<String, Object> parameterValues = new HashMap<String, Object>();
+      parameterValues.put("parameter", this.parameter);
+      String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+      String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
+      ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+    }
+    return null;
+  }
 
-		ProductionPlan pp = (ProductionPlan) fc.getOrchestration();
-		DomainViewpoint dvp = (DomainViewpoint) fc.getViewpointContainer().getViewpoint(DomainViewpoint.class);
-		ResourceSet resourceSet = fc.eResource().getResourceSet();
+  protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
+    Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx
+        .getValue(FcoreBuilderConstants.CURRENT_FCORE);
+    FactoryComponent fc = fcs.get((GenerationElement) (parameter.eContainer()));
 
-		URI uri = ((HashMap<String, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS))
-				.get(parameter.getModelPath());
-		EMFDomain genModelDomain = ActivityInvocationHelper.getDomain(dvp, uri);
+    ProductionPlan pp = (ProductionPlan) fc.getOrchestration();
+    DomainViewpoint dvp = (DomainViewpoint) fc.getViewpointContainer().getViewpoint(DomainViewpoint.class);
+    ResourceSet resourceSet = fc.eResource().getResourceSet();
 
-		Map<String, Type> contracts = new HashMap<String, Type>();
-		Map<String, OrchestrationParameter> parameters = new HashMap<String, OrchestrationParameter>();
+    URI uri = ((HashMap<String, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).get(parameter.getModelPath());
+    EMFDomain genModelDomain = ActivityInvocationHelper.getDomain(dvp, uri);
 
-		for (OrchestrationParameter param : pp.getOrchestrationParameters()) {
-			if (ActivityInvocationHelper.GENERATION_EXTENSION_PARAMETER_NAME.equals(param.getName())) {
-				parameters.put("pattern.substitutions", param);
-			}
-		}
+    Map<String, Type> contracts = new HashMap<String, Type>();
+    Map<String, OrchestrationParameter> parameters = new HashMap<String, OrchestrationParameter>();
 
-		TypeDomain typeDomain = DomainFactory.eINSTANCE.createTypeDomain();
-		typeDomain.setDomain(genModelDomain);
-		contracts.put("genModel", typeDomain);
-		ActivityInvocationHelper.addInvocation(pp,
-				(Activity) resourceSet.getEObject(URI.createURI(this.activity, false), true), contracts, parameters);
+    for (OrchestrationParameter param : pp.getOrchestrationParameters()) {
+      if (ActivityInvocationHelper.GENERATION_EXTENSION_PARAMETER_NAME.equals(param.getName())) {
+        parameters.put("pattern.substitutions", param);
+      }
+    }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "body", out.toString());
-	}
+    TypeDomain typeDomain = DomainFactory.eINSTANCE.createTypeDomain();
+    typeDomain.setDomain(genModelDomain);
+    contracts.put("genModel", typeDomain);
+    ActivityInvocationHelper.addInvocation(pp,
+        (Activity) resourceSet.getEObject(URI.createURI(this.activity, false), true), contracts, parameters);
 
-	public boolean preCondition(PatternContext ctx) throws Exception {
-		return true;
-	}
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "body", out.toString());
+  }
 
-	protected org.polarsys.kitalpha.emde.genchain.extension.model.EmdeCdoGeneration parameter;
+  public boolean preCondition(PatternContext ctx) throws Exception {
+    return true;
+  }
 
-	public void set_parameter(org.polarsys.kitalpha.emde.genchain.extension.model.EmdeCdoGeneration parameter) {
-		this.parameter = parameter;
-	}
+  protected org.polarsys.kitalpha.emde.genchain.extension.model.EmdeCdoGeneration parameter;
 
-	protected java.lang.String activity;
+  public void set_parameter(org.polarsys.kitalpha.emde.genchain.extension.model.EmdeCdoGeneration parameter) {
+    this.parameter = parameter;
+  }
 
-	public void set_activity(java.lang.String activity) {
-		this.activity = activity;
-	}
+  protected java.lang.String activity;
 
-	public Map<String, Object> getParameters() {
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("parameter", this.parameter);
-		return parameters;
-	}
+  public void set_activity(java.lang.String activity) {
+    this.activity = activity;
+  }
+
+  public Map<String, Object> getParameters() {
+    Map<String, Object> parameters = new HashMap<String, Object>();
+    parameters.put("parameter", this.parameter);
+    return parameters;
+  }
 
 }

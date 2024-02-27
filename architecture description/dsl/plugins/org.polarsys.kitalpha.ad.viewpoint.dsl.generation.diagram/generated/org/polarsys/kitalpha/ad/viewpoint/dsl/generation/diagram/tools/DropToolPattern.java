@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.1.201902111324
+//Generated with EGF 1.6.4.qualifier
 package org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.tools;
 
 import java.util.*;
@@ -37,185 +37,183 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 
 public class DropToolPattern
-		extends org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.tools.common.AbstractTool {
+    extends org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.tools.common.AbstractTool {
 
-	public DropToolPattern() {
-		//Here is the constructor
-		// add initialisation of the pattern variables (declaration has been already done).
-	}
+  public DropToolPattern() {
+    //Here is the constructor
+    // add initialisation of the pattern variables (declaration has been already done).
 
-	public void generate(Object argument) throws Exception {
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		IQuery.ParameterDescription paramDesc = null;
-		Map<String, String> queryCtx = null;
-		Node.Container currentNode = ctx.getNode();
-		List<Object> parameterList = null;
-		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+  }
 
-		for (Object parameterParameter : parameterList) {
+  public void generate(Object argument) throws Exception {
+    InternalPatternContext ctx = (InternalPatternContext) argument;
+    IQuery.ParameterDescription paramDesc = null;
+    Map<String, String> queryCtx = null;
+    Node.Container currentNode = ctx.getNode();
+    List<Object> parameterList = null;
+    //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-			this.parameter = (org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Drop) parameterParameter;
+    for (Object parameterParameter : parameterList) {
 
-			if (preCondition(ctx)) {
-				ctx.setNode(new Node.Container(currentNode, getClass()));
-				orchestration((PatternContext) argument);
+      this.parameter = (org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Drop) parameterParameter;
 
-			}
-		}
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-		}
-	}
+      if (preCondition(ctx)) {
+        ctx.setNode(new Node.Container(currentNode, getClass()));
+        orchestration((PatternContext) argument);
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		Node.Container currentNode = ictx.getNode();
-		super.orchestration(new SuperOrchestrationContext(ictx));
-		ictx.setNode(currentNode);
-		if (ictx.useReporter()) {
-			Map<String, Object> parameterValues = new HashMap<String, Object>();
-			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-		}
-		return null;
-	}
+      }
+    }
+    if (ctx.useReporter()) {
+      ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+    }
+  }
 
-	protected void method_createConcretTool(final StringBuffer out, final PatternContext ctx) throws Exception {
-		String s_package_name = (String) ctx.getValue("design.project.name") + ".service.tools";
-		String s_class_name = "DropToolService";
-		String s_service_name = s_package_name + "." + s_class_name;
+  public String orchestration(PatternContext ctx) throws Exception {
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    Node.Container currentNode = ictx.getNode();
+    super.orchestration(new SuperOrchestrationContext(ictx));
+    ictx.setNode(currentNode);
+    if (ictx.useReporter()) {
+      Map<String, Object> parameterValues = new HashMap<String, Object>();
+      parameterValues.put("parameter", this.parameter);
+      String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+      String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
+      ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+    }
+    return null;
+  }
 
-		DiagramElement mapping = parameter.getTool_For();
+  protected void method_createConcretTool(final StringBuffer out, final PatternContext ctx) throws Exception {
+    String s_package_name = (String) ctx.getValue("design.project.name") + ".service.tools";
+    String s_class_name = "DropToolService";
+    String s_service_name = s_package_name + "." + s_class_name;
 
-		EObject d_mapping_container = GenerationUtil.getDoremiElement(mapping.eContainer().eContainer());
+    DiagramElement mapping = parameter.getTool_For();
 
-		if (!(d_mapping_container instanceof DragAndDropTargetDescription)) {
-			return;
-		}
+    EObject d_mapping_container = GenerationUtil.getDoremiElement(mapping.eContainer().eContainer());
 
-		ContainerDropDescription drop = org.eclipse.sirius.diagram.description.tool.ToolFactory.eINSTANCE
-				.createContainerDropDescription();
-		drop.setName("Drop_" + mapping.getName());
-		((DragAndDropTargetDescription) d_mapping_container).getDropDescriptions().add(drop);
-		drop.getMappings().add((DiagramElementMapping) GenerationUtil.getDoremiElement(mapping));
+    if (!(d_mapping_container instanceof DragAndDropTargetDescription)) {
+      return;
+    }
 
-		// Handle reusing nodes
-		final ECrossReferenceAdapter eCrossReferenceAdapter = new ECrossReferenceAdapter();
-		mapping.eAdapters().add(eCrossReferenceAdapter);
-		final Collection<Setting> inverseReferences = eCrossReferenceAdapter.getInverseReferences(mapping);
-		for (Setting setting : inverseReferences) {
-			setting.getEStructuralFeature();
-			final EObject doremiElement = GenerationUtil.getDoremiElement(setting.getEObject().eContainer());
-			if (d_mapping_container != doremiElement && doremiElement instanceof DragAndDropTargetDescription) {
-				((DragAndDropTargetDescription) doremiElement).getDropDescriptions().add(drop);
-			}
-		}
+    ContainerDropDescription drop = org.eclipse.sirius.diagram.description.tool.ToolFactory.eINSTANCE
+        .createContainerDropDescription();
+    drop.setName("Drop_" + mapping.getName());
+    ((DragAndDropTargetDescription) d_mapping_container).getDropDescriptions().add(drop);
+    drop.getMappings().add((DiagramElementMapping) GenerationUtil.getDoremiElement(mapping));
 
-		DropContainerVariable _old = ToolFactory.eINSTANCE.createDropContainerVariable();
-		DropContainerVariable _new = ToolFactory.eINSTANCE.createDropContainerVariable();
-		ElementDropVariable element = ToolFactory.eINSTANCE.createElementDropVariable();
-		ContainerViewVariable c_view = ToolFactory.eINSTANCE.createContainerViewVariable();
-		InitialContainerDropOperation init = ToolFactory.eINSTANCE.createInitialContainerDropOperation();
+    // Handle reusing nodes
+    final ECrossReferenceAdapter eCrossReferenceAdapter = new ECrossReferenceAdapter();
+    mapping.eAdapters().add(eCrossReferenceAdapter);
+    final Collection<Setting> inverseReferences = eCrossReferenceAdapter.getInverseReferences(mapping);
+    for (Setting setting : inverseReferences) {
+      setting.getEStructuralFeature();
+      final EObject doremiElement = GenerationUtil.getDoremiElement(setting.getEObject().eContainer());
+      if (d_mapping_container != doremiElement && doremiElement instanceof DragAndDropTargetDescription) {
+        ((DragAndDropTargetDescription) doremiElement).getDropDescriptions().add(drop);
+      }
+    }
 
-		_old.setName("oldSemanticContainer");
-		_new.setName("newSemanticContainer");
-		element.setName("element");
-		c_view.setName("newContainerView");
+    DropContainerVariable _old = ToolFactory.eINSTANCE.createDropContainerVariable();
+    DropContainerVariable _new = ToolFactory.eINSTANCE.createDropContainerVariable();
+    ElementDropVariable element = ToolFactory.eINSTANCE.createElementDropVariable();
+    ContainerViewVariable c_view = ToolFactory.eINSTANCE.createContainerViewVariable();
+    InitialContainerDropOperation init = ToolFactory.eINSTANCE.createInitialContainerDropOperation();
 
-		drop.setOldContainer(_old);
-		drop.setNewContainer(_new);
-		drop.setElement(element);
-		drop.setNewViewContainer(c_view);
-		drop.setInitialOperation(init);
+    _old.setName("oldSemanticContainer");
+    _new.setName("newSemanticContainer");
+    element.setName("element");
+    c_view.setName("newContainerView");
 
-		ChangeContext gotoNewContainer = ToolFactory.eINSTANCE.createChangeContext();
+    drop.setOldContainer(_old);
+    drop.setNewContainer(_new);
+    drop.setElement(element);
+    drop.setNewViewContainer(c_view);
+    drop.setInitialOperation(init);
 
-		String pNewSemanticContainer = VSMVariable.getGenericExpressionVariable("newSemanticContainer");
-		gotoNewContainer.setBrowseExpression(pNewSemanticContainer);
-		init.setFirstModelOperations(gotoNewContainer);
+    ChangeContext gotoNewContainer = ToolFactory.eINSTANCE.createChangeContext();
 
-		if (!(mapping.eContainer() instanceof MappingSet)) {
-			if (mapping instanceof AbstractNode) {
-				NodeDomainElement domain = ((AbstractNode) mapping).getThe_domain();
-				if (domain != null) {
-					if (domain.getChlidren_list() != null) {
-						String ref_name = domain.getChlidren_list().getName();
-						SetValue setNewContainer = ToolFactory.eINSTANCE.createSetValue();
-						setNewContainer.setFeatureName(ref_name);
+    String pNewSemanticContainer = VSMVariable.getGenericExpressionVariable("newSemanticContainer");
+    gotoNewContainer.setBrowseExpression(pNewSemanticContainer);
+    init.setFirstModelOperations(gotoNewContainer);
 
-						String pElement = VSMVariable.element.getExpressionVariable();
+    if (!(mapping.eContainer() instanceof MappingSet)) {
+      if (mapping instanceof AbstractNode) {
+        NodeDomainElement domain = ((AbstractNode) mapping).getThe_domain();
+        if (domain != null) {
+          if (domain.getChlidren_list() != null) {
+            String ref_name = domain.getChlidren_list().getName();
+            SetValue setNewContainer = ToolFactory.eINSTANCE.createSetValue();
+            setNewContainer.setFeatureName(ref_name);
 
-						setNewContainer.setValueExpression(pElement);
+            String pElement = VSMVariable.element.getExpressionVariable();
 
-						ChangeContext gotoOldContainer = ToolFactory.eINSTANCE.createChangeContext();
-						String pOldSemanticContainer = VSMVariable.getGenericExpressionVariable("oldSemanticContainer");
-						gotoOldContainer.setBrowseExpression(pOldSemanticContainer);
+            setNewContainer.setValueExpression(pElement);
 
-						Unset unsetOldContainer = ToolFactory.eINSTANCE.createUnset();
-						unsetOldContainer.setFeatureName(ref_name);
-						unsetOldContainer.setElementExpression(pElement);
-						gotoOldContainer.getSubModelOperations().add(unsetOldContainer);
+            ChangeContext gotoOldContainer = ToolFactory.eINSTANCE.createChangeContext();
+            String pOldSemanticContainer = VSMVariable.getGenericExpressionVariable("oldSemanticContainer");
+            gotoOldContainer.setBrowseExpression(pOldSemanticContainer);
 
-						gotoNewContainer.getSubModelOperations().add(setNewContainer);
-						gotoNewContainer.getSubModelOperations().add(gotoOldContainer);
-					} else {
-						JavaServiceData javaServiceData = GenerationUtil.getJavaServiceData(s_service_name);
+            Unset unsetOldContainer = ToolFactory.eINSTANCE.createUnset();
+            unsetOldContainer.setFeatureName(ref_name);
+            unsetOldContainer.setElementExpression(pElement);
+            gotoOldContainer.getSubModelOperations().add(unsetOldContainer);
 
-						if (javaServiceData != null) {
-							String mappingParentName = ((DiagramElement) mapping.eContainer().eContainer()).getName();
-							javaServiceData.setContext(parameter);
-							String n_method_name = mappingParentName + "Drop" + mapping.getName();
-							JavaMethodReturnType n_returnType = JavaMethodReturnType.Boolean;
-							JavaMethodData javaMethodData = new JavaMethodData(n_method_name, n_returnType);
-							javaMethodData.addMethodParameter("oldSemanticContainer", "EObject",
-									"the old semantic container");
-							javaMethodData.addMethodParameter("newSemanticContainer", "EObject",
-									"the new semantic container");
-							javaMethodData.addMethodParameter(VSMVariable.element.toString(), "EObject",
-									"the semantic container of the mapping");
-							javaMethodData.addMethodParameter("newContainerView", "EObject",
-									"the view of the new container");
+            gotoNewContainer.getSubModelOperations().add(setNewContainer);
+            gotoNewContainer.getSubModelOperations().add(gotoOldContainer);
+          } else {
+            JavaServiceData javaServiceData = GenerationUtil.getJavaServiceData(s_service_name);
 
-							javaServiceData.addMethod(javaMethodData);
+            if (javaServiceData != null) {
+              String mappingParentName = ((DiagramElement) mapping.eContainer().eContainer()).getName();
+              javaServiceData.setContext(parameter);
+              String n_method_name = mappingParentName + "Drop" + mapping.getName();
+              JavaMethodReturnType n_returnType = JavaMethodReturnType.Boolean;
+              JavaMethodData javaMethodData = new JavaMethodData(n_method_name, n_returnType);
+              javaMethodData.addMethodParameter("oldSemanticContainer", "EObject", "the old semantic container");
+              javaMethodData.addMethodParameter("newSemanticContainer", "EObject", "the new semantic container");
+              javaMethodData.addMethodParameter(VSMVariable.element.toString(), "EObject",
+                  "the semantic container of the mapping");
+              javaMethodData.addMethodParameter("newContainerView", "EObject", "the view of the new container");
 
-							If d_if = ToolFactory.eINSTANCE.createIf();
-							String mParameters = "(" + VSMVariable.getGenericInnerVariable("newSemanticContainer") + ","
-									+ VSMVariable.element.getInnerVariable() + ","
-									+ VSMVariable.getGenericInnerVariable("newContainerView") + ")";
+              javaServiceData.addMethod(javaMethodData);
 
-							d_if.setConditionExpression(SiriusExpressionHelper
-									.getExpressoin(n_method_name + mParameters, ExpressionInterpreter.Service));
-							gotoNewContainer.getSubModelOperations().add(d_if);
-						}
-					}
-					dslvpToolElement = parameter;
-					abstractToolDescription = drop;
-				}
-			} else {
-				// TODO: Handle the case of Edge Drop ????
-			}
-		}
+              If d_if = ToolFactory.eINSTANCE.createIf();
+              String mParameters = "(" + VSMVariable.getGenericInnerVariable("newSemanticContainer") + ","
+                  + VSMVariable.element.getInnerVariable() + ","
+                  + VSMVariable.getGenericInnerVariable("newContainerView") + ")";
 
-		else {
-			// TODO: Handle the case of Edge Drop ????
-		}
+              d_if.setConditionExpression(
+                  SiriusExpressionHelper.getExpressoin(n_method_name + mParameters, ExpressionInterpreter.Service));
+              gotoNewContainer.getSubModelOperations().add(d_if);
+            }
+          }
+          dslvpToolElement = parameter;
+          abstractToolDescription = drop;
+        }
+      } else {
+        // TODO: Handle the case of Edge Drop ????
+      }
+    }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "createConcretTool", out.toString());
-	}
+    else {
+      // TODO: Handle the case of Edge Drop ????
+    }
 
-	protected org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Drop parameter;
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "createConcretTool", out.toString());
+  }
 
-	public void set_parameter(org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Drop parameter) {
-		this.parameter = parameter;
-	}
+  protected org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Drop parameter;
 
-	public Map<String, Object> getParameters() {
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("parameter", this.parameter);
-		return parameters;
-	}
+  public void set_parameter(org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Drop parameter) {
+    this.parameter = parameter;
+  }
+
+  public Map<String, Object> getParameters() {
+    Map<String, Object> parameters = new HashMap<String, Object>();
+    parameters.put("parameter", this.parameter);
+    return parameters;
+  }
 
 }

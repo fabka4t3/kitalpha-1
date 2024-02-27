@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2014, 2020 Thales Global Services S.A.S.
+ * Copyright (c) 2014, 2021 Thales Global Services S.A.S.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0
@@ -493,7 +493,7 @@ public class CoordinatesCalculator {
 
 			Map<Rectangle, EObject> result = new LinkedHashMap<>();
 
-			SiriusDiagramSVGGenerator gen = new SiriusDiagramSVGGenerator(diagramEP);
+			SiriusDiagramSVGGenerator gen = new SiriusDiagramSVGGenerator(diagramEP, true);
 			List<PartPositionInfo> infos = gen.getDiagramPartInfo();
 			infos.stream().filter(info -> info.getView().getElement() != null).forEach(info -> {
 				result.putAll(getInfoRectangleMap(info, registry, -deltaX, -deltaY));
@@ -574,13 +574,18 @@ public class CoordinatesCalculator {
 		try {
 			if (imageFile != null && imageFile.exists()) {
 				String fullPath = imageFile.getLocation().toString();
-				ImageInputStream imageInputStream = ImageIO.createImageInputStream(new File(fullPath));
-				ImageReader reader = getImageReader();
-				reader.setInput(imageInputStream);
-				if (reader.getInput() != null) {
-					Dimension size = new Dimension(reader.getWidth(0), reader.getHeight(0));
-					imageInputStream.close();
-					return size;
+				ImageInputStream imageInputStream = null;
+				try {
+					imageInputStream = ImageIO.createImageInputStream(new File(fullPath));
+					ImageReader reader = getImageReader();
+					reader.setInput(imageInputStream);
+					if (reader.getInput() != null) {
+						return new Dimension(reader.getWidth(0), reader.getHeight(0));
+					}
+				} finally {
+					if (null != imageInputStream) {
+						imageInputStream.close();
+					}
 				}
 			}
 		} catch (Exception e) {

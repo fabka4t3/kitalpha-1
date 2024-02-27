@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.polarsys.kitalpha.ad.af.dsl.services.cs.text.generators;singleton:=true
-Bundle-Version: 5.0.1.qualifier
+Bundle-Version: 7.0.0.qualifier
 Bundle-Activator: org.polarsys.kitalpha.ad.af.dsl.services.cs.text.generators.internal.Activator
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.ui,
  org.polarsys.kitalpha.ad.af.dsl.as.desc.model,
  org.eclipse.xtext,
  org.polarsys.kitalpha.ad.af.dsl.servicies.action
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Export-Package: org.polarsys.kitalpha.ad.af.dsl.services.cs.text.generators,
  org.polarsys.kitalpha.ad.af.dsl.services.cs.text.generators.actions

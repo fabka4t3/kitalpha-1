@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright (c) 2006, 2020 THALES GLOBAL SERVICES.
+  Copyright (c) 2006, 2021 THALES GLOBAL SERVICES.
   This program and the accompanying materials are made available under the
   terms of the Eclipse Public License 2.0 which is available at
   http://www.eclipse.org/legal/epl-2.0
@@ -13,7 +13,7 @@
 <feature
       id="org.polarsys.kitalpha.ad.feature"
       label="Kitalpha AD Feature"
-      version="5.0.1.qualifier"
+      version="7.0.0.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -29,10 +29,10 @@
    </license>
 
    <requires>
-      <import feature="org.polarsys.kitalpha.report.feature" version="5.0.1.qualifier"/>
-      <import feature="org.polarsys.kitalpha.common.feature" version="5.0.1.qualifier"/>
-      <import feature="org.polarsys.kitalpha.resourcereuse.feature" version="5.0.1.qualifier"/>
-      <import feature="org.polarsys.kitalpha.ad.metadata.feature" version="5.0.1.qualifier"/>
+      <import feature="org.polarsys.kitalpha.report.feature" version="7.0.0.qualifier"/>
+      <import feature="org.polarsys.kitalpha.common.feature" version="7.0.0.qualifier"/>
+      <import feature="org.polarsys.kitalpha.resourcereuse.feature" version="7.0.0.qualifier"/>
+      <import feature="org.polarsys.kitalpha.ad.metadata.feature" version="7.0.0.qualifier"/>
    </requires>
 
    <plugin

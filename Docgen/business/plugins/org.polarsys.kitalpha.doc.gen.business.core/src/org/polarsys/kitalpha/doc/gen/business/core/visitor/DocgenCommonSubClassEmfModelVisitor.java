@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2014, 2020 Thales Global Services S.A.S.
+ * Copyright (c) 2014, 2021 Thales Global Services S.A.S.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0
@@ -26,11 +26,14 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.osgi.util.NLS;
 import org.polarsys.kitalpha.doc.gen.business.core.helper.IConceptsHelper;
+import org.polarsys.kitalpha.doc.gen.business.core.messages.Messages;
+import org.polarsys.kitalpha.doc.gen.business.core.Activator;
 import org.polarsys.kitalpha.doc.gen.business.core.scope.SubClassEmfModelVisitorWithScoping;
 import org.polarsys.kitalpha.doc.gen.business.core.services.ExtensionService;
 import org.polarsys.kitalpha.doc.gen.business.core.services.IndexItem;
 import org.polarsys.kitalpha.doc.gen.business.core.services.IndexerService;
 import org.polarsys.kitalpha.doc.gen.business.core.util.DefaultFileNameService;
+import org.polarsys.kitalpha.doc.gen.business.core.util.EscapeChars;
 import org.polarsys.kitalpha.doc.gen.business.core.util.IFileNameService;
 
 
@@ -81,10 +84,17 @@ public class DocgenCommonSubClassEmfModelVisitor extends SubClassEmfModelVisitor
 			for (EClass superType : eAllSuperTypes) 
 			{
 				String fullName = EcoreUtil.getURI(superType).toString();
+				String instanceTypeName = superType.getInstanceTypeName();
+				// Look for patterns matching the element URI
 				List<Pattern> patterns = type2patterns.get(fullName);
+                // Look for patterns matching the element class
+				List<Pattern> instanceTypePatterns = type2patterns.get(instanceTypeName);
 				if (patterns != null) {
 					list.addAll(patterns);
 				}
+				if (instanceTypePatterns != null) {
+                    list.addAll(instanceTypePatterns);
+                }
 			}
 
 			List<Pattern> result = new ArrayList<Pattern>();
@@ -110,6 +120,10 @@ public class DocgenCommonSubClassEmfModelVisitor extends SubClassEmfModelVisitor
 				{
 					String fileName = fileNameService.getFileName((EObject) model);
 					String conceptLabel = iConceptsHelper.getConceptLabel(model);
+					if (conceptLabel == null) {
+						Activator.logWarning(NLS.bind(Messages.warning_ConceptNameReplacedWithNull, model));
+						conceptLabel = EscapeChars.NULL_STRING;
+					}
 					IndexItem item = new IndexItem(conceptLabel, model.getClass().getName(), 
 							null, null, fileName);
 					IndexerService.INSTANCE.getElementsToIndexItems().put(fileName, item);

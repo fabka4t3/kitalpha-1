@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.1.201902111324
+//Generated with EGF 1.6.4.qualifier
 package org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.tools;
 
 import java.util.*;
@@ -31,175 +31,175 @@ import org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.util.IconPathHe
 import org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.util.VSMVariable;
 
 public class CreateViewToolPattern
-		extends org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.tools.common.AbstractCreationTool {
+    extends org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.tools.common.AbstractCreationTool {
 
-	public CreateViewToolPattern() {
-		//Here is the constructor
-		// add initialisation of the pattern variables (declaration has been already done).
-	}
+  public CreateViewToolPattern() {
+    //Here is the constructor
+    // add initialisation of the pattern variables (declaration has been already done).
 
-	public void generate(Object argument) throws Exception {
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		IQuery.ParameterDescription paramDesc = null;
-		Map<String, String> queryCtx = null;
-		Node.Container currentNode = ctx.getNode();
-		List<Object> parameterList = null;
-		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+  }
 
-		for (Object parameterParameter : parameterList) {
+  public void generate(Object argument) throws Exception {
+    InternalPatternContext ctx = (InternalPatternContext) argument;
+    IQuery.ParameterDescription paramDesc = null;
+    Map<String, String> queryCtx = null;
+    Node.Container currentNode = ctx.getNode();
+    List<Object> parameterList = null;
+    //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-			this.parameter = (org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Create) parameterParameter;
+    for (Object parameterParameter : parameterList) {
 
-			if (preCondition(ctx)) {
-				ctx.setNode(new Node.Container(currentNode, getClass()));
-				orchestration((PatternContext) argument);
+      this.parameter = (org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Create) parameterParameter;
 
-			}
-		}
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-		}
-	}
+      if (preCondition(ctx)) {
+        ctx.setNode(new Node.Container(currentNode, getClass()));
+        orchestration((PatternContext) argument);
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		Node.Container currentNode = ictx.getNode();
-		super.orchestration(new SuperOrchestrationContext(ictx));
-		ictx.setNode(currentNode);
-		if (ictx.useReporter()) {
-			Map<String, Object> parameterValues = new HashMap<String, Object>();
-			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-		}
-		return null;
-	}
+      }
+    }
+    if (ctx.useReporter()) {
+      ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+    }
+  }
 
-	protected void method_createConcretTool(final StringBuffer out, final PatternContext ctx) throws Exception {
-		String icon_path = null;
-		if (parameter.getIcon() != null && parameter.getIcon().trim().length() > 0) {
-			icon_path = IconPathHelper.computeDslIconPath(parameter.getIcon(), parameter);
-			IconPathHelper.copyIconFile(parameter.getIcon(), parameter);
-		}
+  public String orchestration(PatternContext ctx) throws Exception {
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    Node.Container currentNode = ictx.getNode();
+    super.orchestration(new SuperOrchestrationContext(ictx));
+    ictx.setNode(currentNode);
+    if (ictx.useReporter()) {
+      Map<String, Object> parameterValues = new HashMap<String, Object>();
+      parameterValues.put("parameter", this.parameter);
+      String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+      String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
+      ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+    }
+    return null;
+  }
 
-		switch (parameter.getTool_For().eClass().getClassifierID()) {
-		case VpdiagramPackage.NODE:
-		case VpdiagramPackage.BORDERED_NODE:
-		case VpdiagramPackage.CONTAINER:
-			DiagramElement diagram_element = (DiagramElement) parameter.getTool_For();
-			String mappingName = diagram_element.getName();
-			AbstractNode node_mapping = (AbstractNode) parameter.getTool_For();
-			NodeDomainElement nodeDomain = node_mapping.getThe_domain();
-			AbstractAssociation association = nodeDomain.getChlidren_list();
-			String scExpression = association != null ? "feature:" + association.getName() : nodeDomain.getQuery();
+  protected void method_createConcretTool(final StringBuffer out, final PatternContext ctx) throws Exception {
+    String icon_path = null;
+    if (parameter.getIcon() != null && parameter.getIcon().trim().length() > 0) {
+      icon_path = IconPathHelper.computeDslIconPath(parameter.getIcon(), parameter);
+      IconPathHelper.copyIconFile(parameter.getIcon(), parameter);
+    }
 
-			/** Sirius variables creation */
-			NodeCreationVariable v_container = ToolFactory.eINSTANCE.createNodeCreationVariable();
-			v_container.setName("container");
+    switch (parameter.getTool_For().eClass().getClassifierID()) {
+    case VpdiagramPackage.NODE:
+    case VpdiagramPackage.BORDERED_NODE:
+    case VpdiagramPackage.CONTAINER:
+      DiagramElement diagram_element = (DiagramElement) parameter.getTool_For();
+      String mappingName = diagram_element.getName();
+      AbstractNode node_mapping = (AbstractNode) parameter.getTool_For();
+      NodeDomainElement nodeDomain = node_mapping.getThe_domain();
+      AbstractAssociation association = nodeDomain.getChlidren_list();
+      String scExpression = association != null ? "feature:" + association.getName() : nodeDomain.getQuery();
 
-			// Selection variable
-			SelectModelElementVariable selection = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE
-					.createSelectModelElementVariable();
-			selection.setName("selection");
-			selection.setMultiple(true);
-			selection.setMessage("Select one or more model elements ...");
-			selection.setCandidatesExpression(scExpression);
-			v_container.getSubVariables().add(selection);
+      /** Sirius variables creation */
+      NodeCreationVariable v_container = ToolFactory.eINSTANCE.createNodeCreationVariable();
+      v_container.setName("container");
 
-			ContainerViewVariable v_container_view = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE
-					.createContainerViewVariable();
-			v_container_view.setName("containerView");
+      // Selection variable
+      SelectModelElementVariable selection = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE
+          .createSelectModelElementVariable();
+      selection.setName("selection");
+      selection.setMultiple(true);
+      selection.setMessage("Select one or more model elements ...");
+      selection.setCandidatesExpression(scExpression);
+      v_container.getSubVariables().add(selection);
 
-			// ChangeContext creation 
-			ChangeContext gotoContainer = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE
-					.createChangeContext();
-			String pContainer = VSMVariable.container.getExpressionVariable();
-			gotoContainer.setBrowseExpression(pContainer);
+      ContainerViewVariable v_container_view = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE
+          .createContainerViewVariable();
+      v_container_view.setName("containerView");
 
-			For _for = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE.createFor();
-			_for.setExpression(VSMVariable.selection.getExpressionVariable());
-			_for.setIteratorName(VSMVariable.i.toString());
-			gotoContainer.getSubModelOperations().add(_for);
+      // ChangeContext creation 
+      ChangeContext gotoContainer = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE
+          .createChangeContext();
+      String pContainer = VSMVariable.container.getExpressionVariable();
+      gotoContainer.setBrowseExpression(pContainer);
 
-			// ChangeContext creation 
-			ChangeContext gotoI = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE
-					.createChangeContext();
-			gotoI.setBrowseExpression(VSMVariable.i.getExpressionVariable());
-			_for.getSubModelOperations().add(gotoI);
-			CreateView createView = ToolFactory.eINSTANCE.createCreateView();
-			createView.setVariableName("createdView");
-			createView.setContainerViewExpression(VSMVariable.containerView.getExpressionVariable());
-			DiagramElementMapping mapping = (DiagramElementMapping) GenerationUtil.getDoremiElement(node_mapping);
-			createView.setMapping(mapping);
-			gotoI.getSubModelOperations().add(createView);
+      For _for = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE.createFor();
+      _for.setExpression(VSMVariable.selection.getExpressionVariable());
+      _for.setIteratorName(VSMVariable.i.toString());
+      gotoContainer.getSubModelOperations().add(_for);
 
-			// Init creation
-			InitialNodeCreationOperation init = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE
-					.createInitialNodeCreationOperation();
-			init.setFirstModelOperations(gotoContainer);
+      // ChangeContext creation 
+      ChangeContext gotoI = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE.createChangeContext();
+      gotoI.setBrowseExpression(VSMVariable.i.getExpressionVariable());
+      _for.getSubModelOperations().add(gotoI);
+      CreateView createView = ToolFactory.eINSTANCE.createCreateView();
+      createView.setVariableName("createdView");
+      createView.setContainerViewExpression(VSMVariable.containerView.getExpressionVariable());
+      DiagramElementMapping mapping = (DiagramElementMapping) GenerationUtil.getDoremiElement(node_mapping);
+      createView.setMapping(mapping);
+      gotoI.getSubModelOperations().add(createView);
 
-			// Tool creation
-			MappingBasedToolDescription creationTool = null;
-			String label = parameter.getLabel();
-			label = label != null && !label.isEmpty() ? label : mappingName;
+      // Init creation
+      InitialNodeCreationOperation init = org.eclipse.sirius.viewpoint.description.tool.ToolFactory.eINSTANCE
+          .createInitialNodeCreationOperation();
+      init.setFirstModelOperations(gotoContainer);
 
-			if (node_mapping instanceof org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Node
-					|| node_mapping instanceof BorderedNode) {
-				creationTool = ToolFactory.eINSTANCE.createNodeCreationDescription();
-				NodeCreationDescription nodeCreationTool = (NodeCreationDescription) creationTool;
-				if (icon_path != null && !icon_path.isEmpty()) {
-					nodeCreationTool.setIconPath(icon_path);
-				}
+      // Tool creation
+      MappingBasedToolDescription creationTool = null;
+      String label = parameter.getLabel();
+      label = label != null && !label.isEmpty() ? label : mappingName;
 
-				NodeMapping nm = (NodeMapping) GenerationUtil.getDoremiElement(node_mapping);
-				nodeCreationTool.getNodeMappings().add(nm);
-				nodeCreationTool.setName(mappingName + "ViewCreationTool");
-				nodeCreationTool.setLabel(label);
-				nodeCreationTool.setVariable(v_container);
-				nodeCreationTool.setViewVariable(v_container_view);
-				nodeCreationTool.setInitialOperation(init);
-			} else {
-				creationTool = ToolFactory.eINSTANCE.createContainerCreationDescription();
-				ContainerCreationDescription containerCreationTool = (ContainerCreationDescription) creationTool;
-				if (icon_path != null && !icon_path.isEmpty()) {
-					containerCreationTool.setIconPath(icon_path);
-				}
+      if (node_mapping instanceof org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Node
+          || node_mapping instanceof BorderedNode) {
+        creationTool = ToolFactory.eINSTANCE.createNodeCreationDescription();
+        NodeCreationDescription nodeCreationTool = (NodeCreationDescription) creationTool;
+        if (icon_path != null && !icon_path.isEmpty()) {
+          nodeCreationTool.setIconPath(icon_path);
+        }
 
-				ContainerMapping cm = (ContainerMapping) GenerationUtil.getDoremiElement(node_mapping);
-				containerCreationTool.getContainerMappings().add(cm);
-				containerCreationTool.setName(mappingName + "ViewCreationTool");
-				containerCreationTool.setLabel(label);
-				containerCreationTool.setVariable(v_container);
-				containerCreationTool.setViewVariable(v_container_view);
-				containerCreationTool.setInitialOperation(init);
-			}
+        NodeMapping nm = (NodeMapping) GenerationUtil.getDoremiElement(node_mapping);
+        nodeCreationTool.getNodeMappings().add(nm);
+        nodeCreationTool.setName(mappingName + "ViewCreationTool");
+        nodeCreationTool.setLabel(label);
+        nodeCreationTool.setVariable(v_container);
+        nodeCreationTool.setViewVariable(v_container_view);
+        nodeCreationTool.setInitialOperation(init);
+      } else {
+        creationTool = ToolFactory.eINSTANCE.createContainerCreationDescription();
+        ContainerCreationDescription containerCreationTool = (ContainerCreationDescription) creationTool;
+        if (icon_path != null && !icon_path.isEmpty()) {
+          containerCreationTool.setIconPath(icon_path);
+        }
 
-			if (creationTool != null && parameter.getIcon() != null && parameter.getIcon().trim().length() > 0) {
-				// FIXME : To finish
-			}
+        ContainerMapping cm = (ContainerMapping) GenerationUtil.getDoremiElement(node_mapping);
+        containerCreationTool.getContainerMappings().add(cm);
+        containerCreationTool.setName(mappingName + "ViewCreationTool");
+        containerCreationTool.setLabel(label);
+        containerCreationTool.setVariable(v_container);
+        containerCreationTool.setViewVariable(v_container_view);
+        containerCreationTool.setInitialOperation(init);
+      }
 
-			dslvpToolElement = parameter;
-			abstractToolDescription = creationTool;
-			break;
+      if (creationTool != null && parameter.getIcon() != null && parameter.getIcon().trim().length() > 0) {
+        // FIXME : To finish
+      }
 
-		case VpdiagramPackage.EDGE:
-			// No support for Edges
-			break;
-		}
+      dslvpToolElement = parameter;
+      abstractToolDescription = creationTool;
+      break;
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "createConcretTool", out.toString());
-	}
+    case VpdiagramPackage.EDGE:
+      // No support for Edges
+      break;
+    }
 
-	public boolean preCondition(PatternContext ctx) throws Exception {
-		return parameter.isOnlyTheView();
-	}
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "createConcretTool", out.toString());
+  }
 
-	public Map<String, Object> getParameters() {
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("parameter", this.parameter);
-		return parameters;
-	}
+  public boolean preCondition(PatternContext ctx) throws Exception {
+    return parameter.isOnlyTheView();
+  }
+
+  public Map<String, Object> getParameters() {
+    Map<String, Object> parameters = new HashMap<String, Object>();
+    parameters.put("parameter", this.parameter);
+    return parameters;
+  }
 
 }

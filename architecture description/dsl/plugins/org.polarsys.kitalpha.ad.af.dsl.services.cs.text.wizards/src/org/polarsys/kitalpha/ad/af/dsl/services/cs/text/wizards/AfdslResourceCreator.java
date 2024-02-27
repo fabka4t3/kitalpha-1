@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2014, 2020 Thales Global Services S.A.S.
+ * Copyright (c) 2014, 2021 Thales Global Services S.A.S.
  *  This program and the accompanying materials are made available under the
  *  terms of the Eclipse Public License 2.0 which is available at
  *  http://www.eclipse.org/legal/epl-2.0
@@ -159,13 +159,15 @@ public class AfdslResourceCreator implements IAFConcreteSyntaxResourceCreator {
 		
 	}
 	private URI computeURI() {
-		String stringURI =null;
+		String aftextFileName = null;
 		if (fileName!=null) {
-			String vpName = fileName.substring(0, fileName.indexOf("."));
-			stringURI = '/' + dslProjectName + getSubFolders(parentFolder) + vpName+ "." + AFTEXT_EXTENSION;
+			aftextFileName = fileName.substring(0, fileName.indexOf("."));
 		} else {
-			stringURI = '/' + dslProjectName + getSubFolders(parentFolder) + shortName+ "." + AFTEXT_EXTENSION;
+			aftextFileName = shortName; 
 		}
+		// Use lowerCased file name as a file naming convention
+		aftextFileName = aftextFileName.toLowerCase();
+		String stringURI = '/' + dslProjectName + getSubFolders(parentFolder) + aftextFileName + "." + AFTEXT_EXTENSION;
 		return AfdslWizardsUtil.URIFix.createPlatformResourceURI(stringURI, false);	
 	}
 	
@@ -187,11 +189,12 @@ public class AfdslResourceCreator implements IAFConcreteSyntaxResourceCreator {
 			"	shortName: \"" + shortName + "\"" + "\n" + 
 			"	Viewpoints { \n" ;
 		
-			String body = "		";
+			StringBuilder sB_Body = new StringBuilder();
+			sB_Body.append("\t\t");
 			for (int i=0; i<viewpoints.size(); i++) {
-				body = body + viewpoints.get(i).getName();
+				sB_Body.append(viewpoints.get(i).getShortName());
 				if (i<(viewpoints.size()-1)) {
-					body = body + ", ";
+					sB_Body.append(", ");
 				}
 			}
 			
@@ -201,7 +204,7 @@ public class AfdslResourceCreator implements IAFConcreteSyntaxResourceCreator {
 			"		rootProjectName: " + rootProjectName + "\n" +
 			"	}\n" +	
 			"}";
-			String fileContent = header + body + footer;
+			String fileContent = header + sB_Body.toString() + footer;
 		return fileContent;
 	}
 

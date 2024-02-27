@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2015, 2020 Thales Global Services S.A.S.
+ * Copyright (c) 2015, 2021 Thales Global Services S.A.S.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0
@@ -25,6 +25,12 @@ public class Messages extends NLS {
 	public static String Scope_Cant_Find_Model_Root_Element;
 	public static String Scope_There_Is_No_Scope;
 	public static String Scope_No_Resource_For_Export_References_Strategy;
+	
+	public static String warning_LabelProvider_GetText_NPE;
+	public static String warning_TextReplacedWithNull;
+	public static String warning_ConceptNameReplacedWithNull;
+	
+	public static String errorUnziptaskOutsideOfTargetDirectory;
 	
 	public static String Generation_Bad_Input;
 	

@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.polarsys.kitalpha.transposer.transformation
-Bundle-Version: 5.0.1.qualifier
+Bundle-Version: 7.0.0.qualifier
 Bundle-Vendor: %providerName
 Require-Bundle: org.polarsys.kitalpha.transposer.core;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Export-Package: org.polarsys.kitalpha.transposer.transformation.context,
  org.polarsys.kitalpha.transposer.transformation.rule,
  org.polarsys.kitalpha.transposer.transformation.trace
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-Localization: plugin

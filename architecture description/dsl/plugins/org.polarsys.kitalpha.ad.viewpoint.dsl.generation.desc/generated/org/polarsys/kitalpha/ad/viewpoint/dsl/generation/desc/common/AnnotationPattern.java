@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.1.201902111324
+//Generated with EGF 1.6.4.202309111303
 package org.polarsys.kitalpha.ad.viewpoint.dsl.generation.desc.common;
 
 import java.util.*;
@@ -15,100 +15,101 @@ import org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl;
 
 public class AnnotationPattern {
 
-	public AnnotationPattern() {
-		//Here is the constructor
-		// add initialisation of the pattern variables (declaration has been already done).
-	}
+  public AnnotationPattern() {
+    //Here is the constructor
+    // add initialisation of the pattern variables (declaration has been already done).
 
-	public void generate(Object argument) throws Exception {
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		IQuery.ParameterDescription paramDesc = null;
-		Map<String, String> queryCtx = null;
-		Node.Container currentNode = ctx.getNode();
-		List<Object> vpElementList = null;
-		//this pattern can only be called by another (i.e. it's not an entry point in execution)
-		List<Object> eElementList = null;
-		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+  }
 
-		for (Object vpElementParameter : vpElementList) {
-			for (Object eElementParameter : eElementList) {
+  public void generate(Object argument) throws Exception {
+    InternalPatternContext ctx = (InternalPatternContext) argument;
+    IQuery.ParameterDescription paramDesc = null;
+    Map<String, String> queryCtx = null;
+    Node.Container currentNode = ctx.getNode();
+    List<Object> vpElementList = null;
+    //this pattern can only be called by another (i.e. it's not an entry point in execution)
+    List<Object> eElementList = null;
+    //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-				this.vpElement = (org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc.AnnotatableElement) vpElementParameter;
-				this.eElement = (org.eclipse.emf.ecore.EModelElement) eElementParameter;
+    for (Object vpElementParameter : vpElementList) {
+      for (Object eElementParameter : eElementList) {
 
-				if (preCondition(ctx)) {
-					ctx.setNode(new Node.Container(currentNode, getClass()));
-					orchestration((PatternContext) argument);
+        this.vpElement = (org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc.AnnotatableElement) vpElementParameter;
+        this.eElement = (org.eclipse.emf.ecore.EModelElement) eElementParameter;
 
-				}
-			}
-		}
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-		}
-	}
+        if (preCondition(ctx)) {
+          ctx.setNode(new Node.Container(currentNode, getClass()));
+          orchestration((PatternContext) argument);
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		Node.Container currentNode = ictx.getNode();
-		method_processAnnotation(new StringBuffer(), ictx);
-		ictx.setNode(currentNode);
-		if (ictx.useReporter()) {
-			Map<String, Object> parameterValues = new HashMap<String, Object>();
-			parameterValues.put("vpElement", this.vpElement);
-			parameterValues.put("eElement", this.eElement);
-			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-		}
-		return null;
-	}
+        }
+      }
+    }
+    if (ctx.useReporter()) {
+      ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+    }
+  }
 
-	protected void method_processAnnotation(final StringBuffer out, final PatternContext ctx) throws Exception {
-		if (vpElement.getOwned_annotations().size() > 0) {
-			for (Annotation iAnnotation : vpElement.getOwned_annotations()) {
-				String source = iAnnotation.getSource();
-				EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-				eAnnotation.setSource(source);
-				if (iAnnotation.getOwned_details().size() > 0) {
-					for (Detail iDetail : iAnnotation.getOwned_details()) {
-						EStringToStringMapEntryImpl entry = (EStringToStringMapEntryImpl) EcoreFactory.eINSTANCE
-								.create(EcorePackage.eINSTANCE.getEStringToStringMapEntry());
-						entry.setKey(iDetail.getKey());
-						if (iDetail.getValue() != null)
-							entry.setValue(iDetail.getValue());
-						eAnnotation.getDetails().add(entry);
-					}
-				}
-				eElement.getEAnnotations().add(eAnnotation);
-			}
-		}
+  public String orchestration(PatternContext ctx) throws Exception {
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    Node.Container currentNode = ictx.getNode();
+    method_processAnnotation(new StringBuffer(), ictx);
+    ictx.setNode(currentNode);
+    if (ictx.useReporter()) {
+      Map<String, Object> parameterValues = new HashMap<String, Object>();
+      parameterValues.put("vpElement", this.vpElement);
+      parameterValues.put("eElement", this.eElement);
+      String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+      String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
+      ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+    }
+    return null;
+  }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "processAnnotation", out.toString());
-	}
+  protected void method_processAnnotation(final StringBuffer out, final PatternContext ctx) throws Exception {
+    if (vpElement.getOwned_annotations().size() > 0) {
+      for (Annotation iAnnotation : vpElement.getOwned_annotations()) {
+        String source = iAnnotation.getSource();
+        EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+        eAnnotation.setSource(source);
+        if (iAnnotation.getOwned_details().size() > 0) {
+          for (Detail iDetail : iAnnotation.getOwned_details()) {
+            EStringToStringMapEntryImpl entry = (EStringToStringMapEntryImpl) EcoreFactory.eINSTANCE
+                .create(EcorePackage.eINSTANCE.getEStringToStringMapEntry());
+            entry.setKey(iDetail.getKey());
+            if (iDetail.getValue() != null)
+              entry.setValue(iDetail.getValue());
+            eAnnotation.getDetails().add(entry);
+          }
+        }
+        eElement.getEAnnotations().add(eAnnotation);
+      }
+    }
 
-	public boolean preCondition(PatternContext ctx) throws Exception {
-		return true;
-	}
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "processAnnotation", out.toString());
+  }
 
-	protected org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc.AnnotatableElement vpElement;
+  public boolean preCondition(PatternContext ctx) throws Exception {
+    return true;
+  }
 
-	public void set_vpElement(org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc.AnnotatableElement vpElement) {
-		this.vpElement = vpElement;
-	}
+  protected org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc.AnnotatableElement vpElement;
 
-	protected org.eclipse.emf.ecore.EModelElement eElement;
+  public void set_vpElement(org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc.AnnotatableElement vpElement) {
+    this.vpElement = vpElement;
+  }
 
-	public void set_eElement(org.eclipse.emf.ecore.EModelElement eElement) {
-		this.eElement = eElement;
-	}
+  protected org.eclipse.emf.ecore.EModelElement eElement;
 
-	public Map<String, Object> getParameters() {
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("vpElement", this.vpElement);
-		parameters.put("eElement", this.eElement);
-		return parameters;
-	}
+  public void set_eElement(org.eclipse.emf.ecore.EModelElement eElement) {
+    this.eElement = eElement;
+  }
+
+  public Map<String, Object> getParameters() {
+    Map<String, Object> parameters = new HashMap<String, Object>();
+    parameters.put("vpElement", this.vpElement);
+    parameters.put("eElement", this.eElement);
+    return parameters;
+  }
 
 }

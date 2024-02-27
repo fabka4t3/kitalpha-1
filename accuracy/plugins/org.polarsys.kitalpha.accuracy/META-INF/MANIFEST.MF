@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.polarsys.kitalpha.accuracy;singleton:=true
-Bundle-Version: 5.0.1.qualifier
+Bundle-Version: 7.0.0.qualifier
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.validation;visibility:=reexport,
@@ -17,5 +17,5 @@ Export-Package: org.polarsys.kitalpha.validation.configurer,
  org.polarsys.kitalpha.validation.provider.generic
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.polarsys.kitalpha.validation.AccuracyPlugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-Localization: plugin

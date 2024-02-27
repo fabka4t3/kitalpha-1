@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017, 2020 Thales Global Services S.A.S.
+ * Copyright (c) 2017, 2023 Thales Global Services S.A.S.
  *  This program and the accompanying materials are made available under the
  *  terms of the Eclipse Public License 2.0 which is available at
  *  http://www.eclipse.org/legal/epl-2.0
@@ -133,8 +133,10 @@ public class MDERichTextEditor extends EditorPart
 
 		if (eResource != null) {
 			IFile file = MDERichTextHelper.getFile(element);
-			String fileString = file.getFullPath().toString();
-			processResourceDelta(affectedChildren, fileString);
+			if (file != null) {
+			  String fileString = file.getFullPath().toString();
+			  processResourceDelta(affectedChildren, fileString);
+			}
 		} else {
 			Status status = new Status(IStatus.WARNING, Activator.PLUGIN_ID,
 					"Could nof find the resource of the editor: " + editorInput.getName());
@@ -228,7 +230,7 @@ public class MDERichTextEditor extends EditorPart
 	@Override
 	public boolean isDirty() {
 		if (!isDeactivate()) {
-			return doCheckWorkspaceResourceStatus(widget) || widget.isDirty();
+      return doCheckWorkspaceResourceStatus(widget);
 		}
 		return false;
 	}

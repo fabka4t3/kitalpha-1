@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2014, 2020 Thales Global Services S.A.S.
+ * Copyright (c) 2014, 2021 Thales Global Services S.A.S.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0
@@ -87,50 +87,53 @@ public class CodeManagerApplication implements IApplication {
 		System.out.println("Reading properties file"); ////$NON-NLS-1$
 		
 		Properties properties = new Properties();
-		FileInputStream stream = new FileInputStream(composer_property_path); 
-		properties.load(stream);
+		
+		try (
+				FileInputStream stream = new FileInputStream(composer_property_path); 
+			)
+		{
+			properties.load(stream);
 
-		final String gen_path0 = properties
-				.getProperty(IStandaloneConstants.GENERATOR_PATH);
-
-		
-		System.out.println("Creation temporary project");
-		
-		// creating a linked project (environment)
-		final IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-
-		project = root.getProject("External Files"); //$NON-NLS-1$
-
-		if (!project.exists()) {
-			project.create(null);
-		}
-		if (!project.isOpen()) {
-			project.open(null);
-		}
-
-		
-		
-		File model_f = new File(model_path);
-		
-		final String gen_path = ComposerPathUtils.pathVariablesDecode(gen_path0, model_f);
-		
-		File file = new File(gen_path);
-		IPath location = new Path(file.getPath());
-		IFolder gen_f = project.getFolder(location.lastSegment());
-		if (!gen_f.exists()){
+			final String gen_path0 = properties
+					.getProperty(IStandaloneConstants.GENERATOR_PATH);
+	
 			
-			if(!file.exists()){
-				file.mkdirs();
+			System.out.println("Creation temporary project");
+			
+			// creating a linked project (environment)
+			final IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+	
+			project = root.getProject("External Files"); //$NON-NLS-1$
+	
+			if (!project.exists()) {
+				project.create(null);
+			}
+			if (!project.isOpen()) {
+				project.open(null);
+			}
+	
+			
+			
+			File model_f = new File(model_path);
+			
+			final String gen_path = ComposerPathUtils.pathVariablesDecode(gen_path0, model_f);
+			
+			File file = new File(gen_path);
+			IPath location = new Path(file.getPath());
+			IFolder gen_f = project.getFolder(location.lastSegment());
+			if (!gen_f.exists()){
+				
+				if(!file.exists()){
+					file.mkdirs();
+				}
+				
+				gen_f.createLink(file.toURI(), IResource.NONE, null);
 			}
 			
-			gen_f.createLink(file.toURI(), IResource.NONE, null);
+			IStatus status = createLaunchConfig(properties, model_f, gen_f);
+			project.delete(true, new NullProgressMonitor());
+			return status.isOK() ? IApplication.EXIT_OK : IApplicationContext.EXIT_ASYNC_RESULT;
 		}
-		
-		IStatus status = createLaunchConfig(properties, model_f, gen_f);
-		project.delete(true, new NullProgressMonitor());
-		stream.close();
-		
-		return status.isOK() ? IApplication.EXIT_OK : IApplicationContext.EXIT_ASYNC_RESULT;
 		
 	}
 

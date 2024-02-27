@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.1.201902111324
+//Generated with EGF 1.6.4.qualifier
 package org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.tools.common;
 
 import java.util.*;
@@ -13,172 +13,170 @@ import org.eclipse.sirius.viewpoint.description.tool.ToolFactory;
 import org.eclipse.sirius.diagram.description.DiagramElementMapping;
 
 public class AbstractDeleteTool
-		extends org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.tools.common.AbstractTool {
+    extends org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.tools.common.AbstractTool {
 
-	public AbstractDeleteTool() {
-		//Here is the constructor
-		// add initialisation of the pattern variables (declaration has been already done).
-	}
+  public AbstractDeleteTool() {
+    //Here is the constructor
+    // add initialisation of the pattern variables (declaration has been already done).
 
-	public void generate(Object argument) throws Exception {
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		IQuery.ParameterDescription paramDesc = null;
-		Map<String, String> queryCtx = null;
-		Node.Container currentNode = ctx.getNode();
-		List<Object> parameterList = null;
-		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+  }
 
-		for (Object parameterParameter : parameterList) {
+  public void generate(Object argument) throws Exception {
+    InternalPatternContext ctx = (InternalPatternContext) argument;
+    IQuery.ParameterDescription paramDesc = null;
+    Map<String, String> queryCtx = null;
+    Node.Container currentNode = ctx.getNode();
+    List<Object> parameterList = null;
+    //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-			this.parameter = (org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Delete) parameterParameter;
+    for (Object parameterParameter : parameterList) {
 
-			if (preCondition(ctx)) {
-				ctx.setNode(new Node.Container(currentNode, getClass()));
-				orchestration((PatternContext) argument);
+      this.parameter = (org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Delete) parameterParameter;
 
-			}
-		}
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-		}
-	}
+      if (preCondition(ctx)) {
+        ctx.setNode(new Node.Container(currentNode, getClass()));
+        orchestration((PatternContext) argument);
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		Node.Container currentNode = ictx.getNode();
-		method_setAssociatedMapping(new StringBuffer(), ictx);
-		method_setToolName(new StringBuffer(), ictx);
-		super.orchestration(new SuperOrchestrationContext(ictx));
-		method_createSubVariables(new StringBuffer(), ictx);
-		ictx.setNode(currentNode);
-		if (ictx.useReporter()) {
-			Map<String, Object> parameterValues = new HashMap<String, Object>();
-			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-		}
-		return null;
-	}
+      }
+    }
+    if (ctx.useReporter()) {
+      ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+    }
+  }
 
-	protected void method_setToolName(final StringBuffer out, final PatternContext ctx) throws Exception {
-		if (parameter.getName() != null && parameter.getName().trim().length() > 0)
-			tool_name = parameter.getName();
-		else
-			tool_name = "Delete_" + associated_mapping.getName();
+  public String orchestration(PatternContext ctx) throws Exception {
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    Node.Container currentNode = ictx.getNode();
+    method_setAssociatedMapping(new StringBuffer(), ictx);
+    method_setToolName(new StringBuffer(), ictx);
+    super.orchestration(new SuperOrchestrationContext(ictx));
+    method_createSubVariables(new StringBuffer(), ictx);
+    ictx.setNode(currentNode);
+    if (ictx.useReporter()) {
+      Map<String, Object> parameterValues = new HashMap<String, Object>();
+      parameterValues.put("parameter", this.parameter);
+      String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+      String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
+      ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+    }
+    return null;
+  }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "setToolName", out.toString());
-	}
+  protected void method_setToolName(final StringBuffer out, final PatternContext ctx) throws Exception {
+    if (parameter.getName() != null && parameter.getName().trim().length() > 0)
+      tool_name = parameter.getName();
+    else
+      tool_name = "Delete_" + associated_mapping.getName();
 
-	protected void method_setAssociatedMapping(final StringBuffer out, final PatternContext ctx) throws Exception {
-		associated_mapping = parameter.getTool_For();
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "setToolName", out.toString());
+  }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "setAssociatedMapping", out.toString());
-	}
+  protected void method_setAssociatedMapping(final StringBuffer out, final PatternContext ctx) throws Exception {
+    associated_mapping = parameter.getTool_For();
 
-	protected void method_createConcretTool(final StringBuffer out, final PatternContext ctx) throws Exception {
-		delete_tool = org.eclipse.sirius.diagram.description.tool.ToolFactory.eINSTANCE
-				.createDeleteElementDescription();
-		delete_tool.setName(tool_name + "_ID");
-		delete_tool.setLabel(tool_name);
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "setAssociatedMapping", out.toString());
+  }
 
-		element_del_var = ToolFactory.eINSTANCE.createElementDeleteVariable();
-		element_del_var.setName("element");
+  protected void method_createConcretTool(final StringBuffer out, final PatternContext ctx) throws Exception {
+    delete_tool = org.eclipse.sirius.diagram.description.tool.ToolFactory.eINSTANCE.createDeleteElementDescription();
+    delete_tool.setName(tool_name + "_ID");
+    delete_tool.setLabel(tool_name);
 
-		EObject doEdgeMapping = GenerationUtil.getDoremiElement(associated_mapping);
-		((DiagramElementMapping) doEdgeMapping).setDeletionDescription(delete_tool);
+    element_del_var = ToolFactory.eINSTANCE.createElementDeleteVariable();
+    element_del_var.setName("element");
 
-		elementView_del_var = ToolFactory.eINSTANCE.createElementDeleteVariable();
-		elementView_del_var.setName("elementView");
+    EObject doEdgeMapping = GenerationUtil.getDoremiElement(associated_mapping);
+    ((DiagramElementMapping) doEdgeMapping).setDeletionDescription(delete_tool);
 
-		containerView_del_var = ToolFactory.eINSTANCE.createContainerViewVariable();
-		containerView_del_var.setName("containerView");
+    elementView_del_var = ToolFactory.eINSTANCE.createElementDeleteVariable();
+    elementView_del_var.setName("elementView");
 
-		initial_operation = ToolFactory.eINSTANCE.createInitialOperation();
+    containerView_del_var = ToolFactory.eINSTANCE.createContainerViewVariable();
+    containerView_del_var.setName("containerView");
 
-		delete_tool.setContainerView(containerView_del_var);
-		delete_tool.setElement(element_del_var);
-		delete_tool.setElementView(elementView_del_var);
-		delete_tool.setInitialOperation(initial_operation);
+    initial_operation = ToolFactory.eINSTANCE.createInitialOperation();
 
-		dslvpToolElement = parameter;
-		abstractToolDescription = delete_tool;
+    delete_tool.setContainerView(containerView_del_var);
+    delete_tool.setElement(element_del_var);
+    delete_tool.setElementView(elementView_del_var);
+    delete_tool.setInitialOperation(initial_operation);
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "createConcretTool", out.toString());
-	}
+    dslvpToolElement = parameter;
+    abstractToolDescription = delete_tool;
 
-	protected void method_createSubVariables(final StringBuffer out, final PatternContext ctx) throws Exception {
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "createConcretTool", out.toString());
+  }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "createSubVariables", out.toString());
-	}
+  protected void method_createSubVariables(final StringBuffer out, final PatternContext ctx) throws Exception {
 
-	protected org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Delete parameter;
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "createSubVariables", out.toString());
+  }
 
-	public void set_parameter(org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Delete parameter) {
-		this.parameter = parameter;
-	}
+  protected org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Delete parameter;
 
-	protected org.eclipse.sirius.viewpoint.description.tool.InitialOperation initial_operation;
+  public void set_parameter(org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Delete parameter) {
+    this.parameter = parameter;
+  }
 
-	public void set_initial_operation(
-			org.eclipse.sirius.viewpoint.description.tool.InitialOperation initial_operation) {
-		this.initial_operation = initial_operation;
-	}
+  protected org.eclipse.sirius.viewpoint.description.tool.InitialOperation initial_operation;
 
-	protected org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.DiagramElement associated_mapping;
+  public void set_initial_operation(org.eclipse.sirius.viewpoint.description.tool.InitialOperation initial_operation) {
+    this.initial_operation = initial_operation;
+  }
 
-	public void set_associated_mapping(
-			org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.DiagramElement associated_mapping) {
-		this.associated_mapping = associated_mapping;
-	}
+  protected org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.DiagramElement associated_mapping;
 
-	protected java.lang.String tool_name;
+  public void set_associated_mapping(
+      org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.DiagramElement associated_mapping) {
+    this.associated_mapping = associated_mapping;
+  }
 
-	public void set_tool_name(java.lang.String tool_name) {
-		this.tool_name = tool_name;
-	}
+  protected java.lang.String tool_name;
 
-	protected org.eclipse.sirius.viewpoint.description.tool.ElementDeleteVariable element_del_var;
+  public void set_tool_name(java.lang.String tool_name) {
+    this.tool_name = tool_name;
+  }
 
-	public void set_element_del_var(
-			org.eclipse.sirius.viewpoint.description.tool.ElementDeleteVariable element_del_var) {
-		this.element_del_var = element_del_var;
-	}
+  protected org.eclipse.sirius.viewpoint.description.tool.ElementDeleteVariable element_del_var;
 
-	protected org.eclipse.sirius.viewpoint.description.tool.ElementDeleteVariable elementView_del_var;
+  public void set_element_del_var(org.eclipse.sirius.viewpoint.description.tool.ElementDeleteVariable element_del_var) {
+    this.element_del_var = element_del_var;
+  }
 
-	public void set_elementView_del_var(
-			org.eclipse.sirius.viewpoint.description.tool.ElementDeleteVariable elementView_del_var) {
-		this.elementView_del_var = elementView_del_var;
-	}
+  protected org.eclipse.sirius.viewpoint.description.tool.ElementDeleteVariable elementView_del_var;
 
-	protected org.eclipse.sirius.viewpoint.description.tool.ContainerViewVariable containerView_del_var;
+  public void set_elementView_del_var(
+      org.eclipse.sirius.viewpoint.description.tool.ElementDeleteVariable elementView_del_var) {
+    this.elementView_del_var = elementView_del_var;
+  }
 
-	public void set_containerView_del_var(
-			org.eclipse.sirius.viewpoint.description.tool.ContainerViewVariable containerView_del_var) {
-		this.containerView_del_var = containerView_del_var;
-	}
+  protected org.eclipse.sirius.viewpoint.description.tool.ContainerViewVariable containerView_del_var;
 
-	protected org.eclipse.sirius.diagram.description.tool.DeleteElementDescription delete_tool;
+  public void set_containerView_del_var(
+      org.eclipse.sirius.viewpoint.description.tool.ContainerViewVariable containerView_del_var) {
+    this.containerView_del_var = containerView_del_var;
+  }
 
-	public void set_delete_tool(org.eclipse.sirius.diagram.description.tool.DeleteElementDescription delete_tool) {
-		this.delete_tool = delete_tool;
-	}
+  protected org.eclipse.sirius.diagram.description.tool.DeleteElementDescription delete_tool;
 
-	protected java.lang.Boolean generateJavaService;
+  public void set_delete_tool(org.eclipse.sirius.diagram.description.tool.DeleteElementDescription delete_tool) {
+    this.delete_tool = delete_tool;
+  }
 
-	public void set_generateJavaService(java.lang.Boolean generateJavaService) {
-		this.generateJavaService = generateJavaService;
-	}
+  protected java.lang.Boolean generateJavaService;
 
-	public Map<String, Object> getParameters() {
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("parameter", this.parameter);
-		return parameters;
-	}
+  public void set_generateJavaService(java.lang.Boolean generateJavaService) {
+    this.generateJavaService = generateJavaService;
+  }
+
+  public Map<String, Object> getParameters() {
+    Map<String, Object> parameters = new HashMap<String, Object>();
+    parameters.put("parameter", this.parameter);
+    return parameters;
+  }
 
 }

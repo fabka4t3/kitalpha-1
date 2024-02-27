@@ -3,14 +3,14 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-Version: 5.0.1.qualifier
+Bundle-Version: 7.0.0.qualifier
 Bundle-SymbolicName: org.polarsys.kitalpha.ad.viewpoint;singleton:=true
 Bundle-Activator: org.polarsys.kitalpha.ad.viewpoint.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.pde.core,
  org.polarsys.kitalpha.ad.services;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: org.polarsys.kitalpha.ad.viewpoint.handlers,
  org.polarsys.kitalpha.ad.viewpoint.handlers.runtime,
  org.polarsys.kitalpha.ad.viewpoint.handlers.workspace,

@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.1.201902111324
+//Generated with EGF 1.6.4.202309111303
 package org.polarsys.kitalpha.ad.viewpoint.dsl.generation.desc.resource;
 
 import java.util.*;
@@ -23,144 +23,143 @@ import org.polarsys.kitalpha.ad.viewpoint.dsl.as.desc.helper.desc.CoreModelHelpe
 import org.polarsys.kitalpha.ad.viewpoint.dsl.generation.common.adapter.IContractProvider;
 
 public class EcoreResourceCreation
-		extends org.polarsys.kitalpha.ad.viewpoint.dsl.generation.desc.common.AnyVPSpecElement {
+    extends org.polarsys.kitalpha.ad.viewpoint.dsl.generation.desc.common.AnyVPSpecElement {
 
-	public EcoreResourceCreation() {
-		//Here is the constructor
-		// add initialisation of the pattern variables (declaration has been already done).
-	}
+  public EcoreResourceCreation() {
+    //Here is the constructor
+    // add initialisation of the pattern variables (declaration has been already done).
 
-	public void generate(Object argument) throws Exception {
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		IQuery.ParameterDescription paramDesc = null;
-		Map<String, String> queryCtx = null;
-		Node.Container currentNode = ctx.getNode();
-		List<Object> parameterList = null;
-		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+  }
 
-		for (Object parameterParameter : parameterList) {
+  public void generate(Object argument) throws Exception {
+    InternalPatternContext ctx = (InternalPatternContext) argument;
+    IQuery.ParameterDescription paramDesc = null;
+    Map<String, String> queryCtx = null;
+    Node.Container currentNode = ctx.getNode();
+    List<Object> parameterList = null;
+    //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-			this.parameter = (org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc.Data) parameterParameter;
+    for (Object parameterParameter : parameterList) {
 
-			if (preCondition(ctx)) {
-				ctx.setNode(new Node.Container(currentNode, getClass()));
-				orchestration((PatternContext) argument);
+      this.parameter = (org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc.Data) parameterParameter;
 
-			}
-		}
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-		}
-	}
+      if (preCondition(ctx)) {
+        ctx.setNode(new Node.Container(currentNode, getClass()));
+        orchestration((PatternContext) argument);
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		Node.Container currentNode = ictx.getNode();
-		super.orchestration(new SuperOrchestrationContext(ictx));
-		method_initResourceInformations(new StringBuffer(), ictx);
-		method_generateResource(new StringBuffer(), ictx);
-		method_loadEcoreResource(new StringBuffer(), ictx);
-		{
-			final Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("vpElement", this.parameter);
-			parameters.put("eElement", this.gEPackage);
-			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			CallHelper.executeWithParameterInjection(
-					"platform:/plugin/org.polarsys.kitalpha.ad.viewpoint.dsl.generation.desc/egf/vpdslECoreGenerator.fcore#_HKpWoL4sEeKDeKot98nSrA",
-					ctx_local, parameters);
-		}
-		ictx.setNode(currentNode);
-		if (ictx.useReporter()) {
-			Map<String, Object> parameterValues = new HashMap<String, Object>();
-			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-		}
-		return null;
-	}
+      }
+    }
+    if (ctx.useReporter()) {
+      ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+    }
+  }
 
-	protected void method_initResourceInformations(final StringBuffer out, final PatternContext ctx) throws Exception {
-		nsUri = VpDslConfigurationHelper.getNsURI(parameter);
-		shortName = CoreModelHelper.getViewpointShortName(parameter);
-		modelFolder = (String) ctx.getValue(IContractProvider.MODEL_FOLDER);
-		rootProjectName = VpDslConfigurationHelper.getRootProjectName(parameter);
+  public String orchestration(PatternContext ctx) throws Exception {
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    Node.Container currentNode = ictx.getNode();
+    super.orchestration(new SuperOrchestrationContext(ictx));
+    method_initResourceInformations(new StringBuffer(), ictx);
+    method_generateResource(new StringBuffer(), ictx);
+    method_loadEcoreResource(new StringBuffer(), ictx);
+    {
+      final Map<String, Object> parameters = new HashMap<String, Object>();
+      parameters.put("vpElement", this.parameter);
+      parameters.put("eElement", this.gEPackage);
+      ExecutionContext ctx_local = new ExecutionContext(ictx);
+      CallHelper.executeWithParameterInjection(
+          "platform:/plugin/org.polarsys.kitalpha.ad.viewpoint.dsl.generation.desc/egf/vpdslECoreGenerator.fcore#_HKpWoL4sEeKDeKot98nSrA",
+          ctx_local, parameters);
+    }
+    ictx.setNode(currentNode);
+    if (ictx.useReporter()) {
+      Map<String, Object> parameterValues = new HashMap<String, Object>();
+      parameterValues.put("parameter", this.parameter);
+      String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+      String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
+      ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+    }
+    return null;
+  }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "initResourceInformations", out.toString());
-	}
+  protected void method_initResourceInformations(final StringBuffer out, final PatternContext ctx) throws Exception {
+    nsUri = VpDslConfigurationHelper.getNsURI(parameter);
+    shortName = CoreModelHelper.getViewpointShortName(parameter);
+    modelFolder = (String) ctx.getValue(IContractProvider.MODEL_FOLDER);
+    rootProjectName = VpDslConfigurationHelper.getRootProjectName(parameter);
 
-	protected void method_generateResource(final StringBuffer out, final PatternContext ctx) throws Exception {
-		// EPackage creation
-		gEPackage = EcoreFactory.eINSTANCE.createEPackage();
-		gEPackage.setName(shortName);
-		gEPackage.setNsPrefix(shortName);
-		gEPackage.setNsURI(nsUri);
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "initResourceInformations", out.toString());
+  }
 
-		// Resource creation
-		ResourceSet resourceSet = new ResourceSetImpl();
-		URI uri = URI.createPlatformResourceURI(rootProjectName + "/" + modelFolder + "/" + shortName + ".ecore",
-				false);
-		Resource resource = resourceSet.createResource(uri);
-		resource.getContents().add(gEPackage);
-		resource.save(Collections.EMPTY_MAP);
+  protected void method_generateResource(final StringBuffer out, final PatternContext ctx) throws Exception {
+    // EPackage creation
+    gEPackage = EcoreFactory.eINSTANCE.createEPackage();
+    gEPackage.setName(shortName);
+    gEPackage.setNsPrefix(shortName);
+    gEPackage.setNsURI(nsUri);
 
-		// Loading resource
-		//ECoreResourceManager.INSTANCE.loadECoreResource(new ECoreFileInformation(rootProjectName, "models", shortName));
+    // Resource creation
+    ResourceSet resourceSet = new ResourceSetImpl();
+    URI uri = URI.createPlatformResourceURI(rootProjectName + "/" + modelFolder + "/" + shortName + ".ecore", false);
+    Resource resource = resourceSet.createResource(uri);
+    resource.getContents().add(gEPackage);
+    resource.save(Collections.EMPTY_MAP);
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "generateResource", out.toString());
-	}
+    // Loading resource
+    //ECoreResourceManager.INSTANCE.loadECoreResource(new ECoreFileInformation(rootProjectName, "models", shortName));
 
-	protected void method_loadEcoreResource(final StringBuffer out, final PatternContext ctx) throws Exception {
-		// Loading resource
-		ECoreResourceManager.INSTANCE
-				.loadECoreResource(new ECoreFileInformation(rootProjectName, modelFolder, shortName));
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "generateResource", out.toString());
+  }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "loadEcoreResource", out.toString());
-	}
+  protected void method_loadEcoreResource(final StringBuffer out, final PatternContext ctx) throws Exception {
+    // Loading resource
+    ECoreResourceManager.INSTANCE.loadECoreResource(new ECoreFileInformation(rootProjectName, modelFolder, shortName));
 
-	protected org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc.Data parameter;
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "loadEcoreResource", out.toString());
+  }
 
-	public void set_parameter(org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc.Data parameter) {
-		this.parameter = parameter;
-	}
+  protected org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc.Data parameter;
 
-	protected java.lang.String shortName;
+  public void set_parameter(org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdesc.Data parameter) {
+    this.parameter = parameter;
+  }
 
-	public void set_shortName(java.lang.String shortName) {
-		this.shortName = shortName;
-	}
+  protected java.lang.String shortName;
 
-	protected java.lang.String nsUri;
+  public void set_shortName(java.lang.String shortName) {
+    this.shortName = shortName;
+  }
 
-	public void set_nsUri(java.lang.String nsUri) {
-		this.nsUri = nsUri;
-	}
+  protected java.lang.String nsUri;
 
-	protected org.eclipse.emf.ecore.EPackage gEPackage;
+  public void set_nsUri(java.lang.String nsUri) {
+    this.nsUri = nsUri;
+  }
 
-	public void set_gEPackage(org.eclipse.emf.ecore.EPackage gEPackage) {
-		this.gEPackage = gEPackage;
-	}
+  protected org.eclipse.emf.ecore.EPackage gEPackage;
 
-	protected java.lang.String rootProjectName;
+  public void set_gEPackage(org.eclipse.emf.ecore.EPackage gEPackage) {
+    this.gEPackage = gEPackage;
+  }
 
-	public void set_rootProjectName(java.lang.String rootProjectName) {
-		this.rootProjectName = rootProjectName;
-	}
+  protected java.lang.String rootProjectName;
 
-	protected java.lang.String modelFolder;
+  public void set_rootProjectName(java.lang.String rootProjectName) {
+    this.rootProjectName = rootProjectName;
+  }
 
-	public void set_modelFolder(java.lang.String modelFolder) {
-		this.modelFolder = modelFolder;
-	}
+  protected java.lang.String modelFolder;
 
-	public Map<String, Object> getParameters() {
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("parameter", this.parameter);
-		return parameters;
-	}
+  public void set_modelFolder(java.lang.String modelFolder) {
+    this.modelFolder = modelFolder;
+  }
+
+  public Map<String, Object> getParameters() {
+    Map<String, Object> parameters = new HashMap<String, Object>();
+    parameters.put("parameter", this.parameter);
+    return parameters;
+  }
 
 }

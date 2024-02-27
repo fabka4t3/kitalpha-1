@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Kitalpha Product" uid="org.polarsys.kitalpha.releng.sdk.product" id="org.polarsys.kitalpha.product.kitalpha" application="org.polarsys.kitalpha.product.application" version="5.0.1.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="Kitalpha Product" uid="org.polarsys.kitalpha.releng.sdk.product" id="org.polarsys.kitalpha.product.kitalpha" application="org.polarsys.kitalpha.product.application" version="7.0.0.qualifier" useFeatures="true" includeLaunchers="true" autoIncludeRequirements="true">
 
    <aboutInfo>
       <image path="/org.polarsys.kitalpha.product/icons/KitalphaAbout.png"/>
@@ -21,13 +21,16 @@ openFile
       <programArgsLin>--launcher.GTK_version
 2
       </programArgsLin>
-      <vmArgs>-Dosgi.requiredJavaVersion=1.8
+      <vmArgs>-Dosgi.requiredJavaVersion=11
+-Dosgi.dataAreaRequiresExplicitInit=true
 -Xms512m
 -Xmx2048m
 -XX:PermSize=256M
       </vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
+      <vmArgsWin>-Dorg.eclipse.swt.browser.DefaultType=edge
+      </vmArgsWin>
    </launcherArgs>
 
    <windowImages i16="/org.polarsys.kitalpha.product/icons/Kitalpha16x16.png" i32="/org.polarsys.kitalpha.product/icons/Kitalpha32x32.png" i48="/org.polarsys.kitalpha.product/icons/Kitalpha48x48.png"/>
@@ -45,7 +48,7 @@ openFile
 
    <license>
         <text>
-Eclipse Public License 2.0
+   Eclipse Public License 2.0
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
@@ -179,21 +182,21 @@ SPDX-License-Identifier: EPL-2.0
       <feature id="org.polarsys.kitalpha.emde.genchain.feature.source"/>
       <feature id="org.polarsys.kitalpha.richtext.widget.ext.feature"/>
       <feature id="org.polarsys.kitalpha.richtext.widget.ext.feature.source"/>
-	  <feature id="org.polarsys.kitalpha.richtext.widget.tools.ext.feature"/>
-	  <feature id="org.polarsys.kitalpha.richtext.widget.tools.ext.feature.source"/>
+      <feature id="org.polarsys.kitalpha.richtext.widget.tools.ext.feature"/>
+      <feature id="org.polarsys.kitalpha.richtext.widget.tools.ext.feature.source"/>
       <feature id="org.eclipse.nebula.widgets.richtext.feature"/>
       <feature id="org.polarsys.kitalpha.massactions.feature"/>
    </features>
 
    <configurations>
+      <plugin id="org.apache.felix.scr" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
-      <plugin id="org.apache.felix.scr" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
-      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
       <plugin id="org.eclipse.equinox.p2.reconciler.dropins" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
       <plugin id="org.eclipse.update.configurator" autoStart="true" startLevel="4" />
-      <property name="org.eclipse.update.reconcile" value="false" />     
+      <property name="org.eclipse.update.reconcile" value="false" />
    </configurations>
 
    <preferencesInfo>

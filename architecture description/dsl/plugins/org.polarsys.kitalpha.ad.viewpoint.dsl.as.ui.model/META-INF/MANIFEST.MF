@@ -2,11 +2,11 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.polarsys.kitalpha.ad.viewpoint.dsl.as.ui.model;singleton:=true
-Bundle-Version: 5.0.1.qualifier
+Bundle-Version: 7.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpui,
  org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpui.impl,
  org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpui.util

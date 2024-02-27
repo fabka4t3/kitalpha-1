@@ -12,8 +12,9 @@
 -->
 <feature
       id="org.polarsys.kitalpha.transposer.examples.feature"
-      label="Kitalpha Transposer Examples Feature"
-      version="5.0.1.qualifier">
+      label="%featureName"
+      version="7.0.0.qualifier"
+      provider-name="%providerName">
 
    <description>
       %description
@@ -47,19 +48,5 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-<!--
-   <plugin
-         id="org.polarsys.kitalpha.transposer.m2m.componentsample.to.uml"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 
-   <plugin
-         id="org.polarsys.kitalpha.transposer.m2m.uml.to.componentsample"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
--->
 </feature>

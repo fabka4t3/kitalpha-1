@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
-Bundle-Version: 5.0.1.qualifier
+Bundle-Version: 7.0.0.qualifier
 Bundle-SymbolicName: org.polarsys.kitalpha.ad.af.dsl.cs.text.afdesc.ui;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.ui.editors;bundle-version="3.5.0",
@@ -20,7 +20,7 @@ Require-Bundle: org.eclipse.ui.editors;bundle-version="3.5.0",
  org.polarsys.kitalpha.ad.af.dsl.services.cs.text.generators,
  org.polarsys.kitalpha.ad.af.dsl.servicies.project
 Import-Package: org.apache.log4j
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: org.polarsys.kitalpha.ad.af.dsl.cs.text.ui.contentassist,
  org.polarsys.kitalpha.ad.af.dsl.cs.text.ui.contentassist.antlr,
  org.polarsys.kitalpha.ad.af.dsl.cs.text.ui.quickfix

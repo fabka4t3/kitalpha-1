@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017, 2020 Thales Global Services S.A.S.
+ * Copyright (c) 2017, 2023 Thales Global Services S.A.S.
  *  This program and the accompanying materials are made available under the
  *  terms of the Eclipse Public License 2.0 which is available at
  *  http://www.eclipse.org/legal/epl-2.0
@@ -16,8 +16,10 @@ import java.net.URL;
 import java.util.Map;
 
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.nebula.widgets.richtext.RichTextEditor;
 import org.eclipse.nebula.widgets.richtext.RichTextEditorConfiguration;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.ProgressEvent;
 import org.eclipse.swt.browser.ProgressListener;
@@ -27,6 +29,8 @@ import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
 import org.polarsys.kitalpha.richtext.common.impl.BrowserBasedMDERichTextWidgetImpl;
 import org.polarsys.kitalpha.richtext.common.intf.MDERichTextWidget;
+import org.polarsys.kitalpha.richtext.nebula.widget.internal.Activator;
+import org.polarsys.kitalpha.richtext.nebula.widget.preferences.IRichTextPreferences;
 import org.polarsys.kitalpha.richtext.nebula.widget.toolbar.MDERichTextToolbarItemHandler;
 import org.polarsys.kitalpha.richtext.nebula.widget.toolbar.MDEToolbarItem;
 
@@ -57,7 +61,8 @@ public class MDENebulaBasedRichTextWidgetImpl extends BrowserBasedMDERichTextWid
 
 	public MDENebulaBasedRichTextWidgetImpl(Composite parent) {
 		super(parent);
-		this.editor = createRichTextEditor(parent, null, -1); // default configuration
+		int style = getBrowserStyle();
+		this.editor = createRichTextEditor(parent, null, style); // default configuration
 		this.configuration = getEditorConfiguration();
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(this.editor);
 
@@ -74,7 +79,8 @@ public class MDENebulaBasedRichTextWidgetImpl extends BrowserBasedMDERichTextWid
 		super(parent);
 		this.configuration = configuration;
 		((MDENebulaRichTextConfiguration) this.configuration).createToolbar();
-		this.editor = createRichTextEditor(parent, configuration, -1); // default
+		int style = getBrowserStyle();
+		this.editor = createRichTextEditor(parent, configuration, style); // default
 																		// configuration
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(this.editor);
 
@@ -89,6 +95,10 @@ public class MDENebulaBasedRichTextWidgetImpl extends BrowserBasedMDERichTextWid
 
 	public MDENebulaBasedRichTextWidgetImpl(Composite parent, int style) {
 		super(parent);
+		int browserStyle = getBrowserStyle();
+		if(browserStyle != -1) {
+			style = style & browserStyle;
+		}
 		this.editor = createRichTextEditor(parent, null, style); // default
 		// configuration
 		this.configuration = getEditorConfiguration();
@@ -107,6 +117,10 @@ public class MDENebulaBasedRichTextWidgetImpl extends BrowserBasedMDERichTextWid
 		super(parent);
 		this.configuration = configuration;
 		((MDENebulaRichTextConfiguration) this.configuration).createToolbar();
+		int browserStyle = getBrowserStyle();
+		if(browserStyle != -1) {
+			style = style & browserStyle;
+		}
 		this.editor = createRichTextEditor(parent, null, style); // default
 		// configuration
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(this.editor);
@@ -201,14 +215,6 @@ public class MDENebulaBasedRichTextWidgetImpl extends BrowserBasedMDERichTextWid
 	}
 
 	@Override
-	public boolean isDirty() {
-		if (isReady() && isEditable()) {
-			return super.isDirty();
-		}
-		return false;
-	}
-
-	@Override
 	public boolean isReady() {
 		return editorReady;
 	}
@@ -265,7 +271,7 @@ public class MDENebulaBasedRichTextWidgetImpl extends BrowserBasedMDERichTextWid
 					// We avoid to set several time the same text.
 					// With old descriptions, the text getText will be different to the given
 					// parameter as browser will refactor the HTML string
-					if (!currentValue.equals(text)) {
+          if (currentValue != null && !currentValue.equals(text)) {
 						editor.setText(text);
 					} else {
 						break;
@@ -441,5 +447,17 @@ public class MDENebulaBasedRichTextWidgetImpl extends BrowserBasedMDERichTextWid
 	@Override
 	public Composite getParent() {
 		return editor.getParent();
+	}
+	
+	protected int getBrowserStyle() {
+		int style = -1;
+		if(SWT.getPlatform().equals("win32")) {
+			IPreferenceStore preferenceStore = Activator.getDefault().getPreferenceStore();
+			boolean forceIE = preferenceStore.getBoolean(IRichTextPreferences.PREFERENCE_FORCE_IE_WIN32);
+			if(forceIE) {
+				style = SWT.WEBKIT;
+			}
+		}
+		return style;
 	}
 }

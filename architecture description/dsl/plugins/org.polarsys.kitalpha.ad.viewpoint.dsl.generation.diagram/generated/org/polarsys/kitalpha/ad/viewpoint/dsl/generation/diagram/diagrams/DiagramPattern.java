@@ -1,4 +1,4 @@
-//Generated with EGF 1.6.1.201902111324
+//Generated with EGF 1.6.4.qualifier
 package org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.diagrams;
 
 import java.util.*;
@@ -23,127 +23,128 @@ import org.polarsys.kitalpha.ad.viewpoint.dsl.generation.provider.resourceimpl.E
 import org.polarsys.kitalpha.ad.viewpoint.dsl.generation.provider.resourceimpl.ViewpointResourceProviderRegistry;
 
 public class DiagramPattern
-		extends org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.common.DiagramElementPattern {
+    extends org.polarsys.kitalpha.ad.viewpoint.dsl.generation.diagram.common.DiagramElementPattern {
 
-	public DiagramPattern() {
-		//Here is the constructor
-		// add initialisation of the pattern variables (declaration has been already done).
-	}
+  public DiagramPattern() {
+    //Here is the constructor
+    // add initialisation of the pattern variables (declaration has been already done).
 
-	public void generate(Object argument) throws Exception {
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		IQuery.ParameterDescription paramDesc = null;
-		Map<String, String> queryCtx = null;
-		Node.Container currentNode = ctx.getNode();
-		List<Object> parameterList = null;
-		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+  }
 
-		for (Object parameterParameter : parameterList) {
+  public void generate(Object argument) throws Exception {
+    InternalPatternContext ctx = (InternalPatternContext) argument;
+    IQuery.ParameterDescription paramDesc = null;
+    Map<String, String> queryCtx = null;
+    Node.Container currentNode = ctx.getNode();
+    List<Object> parameterList = null;
+    //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-			this.parameter = (org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Diagram) parameterParameter;
+    for (Object parameterParameter : parameterList) {
 
-			if (preCondition(ctx)) {
-				ctx.setNode(new Node.Container(currentNode, getClass()));
-				orchestration((PatternContext) argument);
+      this.parameter = (org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Diagram) parameterParameter;
 
-			}
-		}
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-		}
-	}
+      if (preCondition(ctx)) {
+        ctx.setNode(new Node.Container(currentNode, getClass()));
+        orchestration((PatternContext) argument);
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		Node.Container currentNode = ictx.getNode();
-		method_computeDomainClass(new StringBuffer(), ictx);
-		super.orchestration(new SuperOrchestrationContext(ictx));
-		ictx.setNode(currentNode);
-		if (ictx.useReporter()) {
-			Map<String, Object> parameterValues = new HashMap<String, Object>();
-			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-		}
-		return null;
-	}
+      }
+    }
+    if (ctx.useReporter()) {
+      ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+    }
+  }
 
-	protected void method_setParentMapping(final StringBuffer out, final PatternContext ctx) throws Exception {
-		dslvpElement = parameter;
-		doremiElement = doremiParent;
+  public String orchestration(PatternContext ctx) throws Exception {
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    Node.Container currentNode = ictx.getNode();
+    method_computeDomainClass(new StringBuffer(), ictx);
+    super.orchestration(new SuperOrchestrationContext(ictx));
+    ictx.setNode(currentNode);
+    if (ictx.useReporter()) {
+      Map<String, Object> parameterValues = new HashMap<String, Object>();
+      parameterValues.put("parameter", this.parameter);
+      String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+      String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
+      ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+    }
+    return null;
+  }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "setParentMapping", out.toString());
-	}
+  protected void method_setParentMapping(final StringBuffer out, final PatternContext ctx) throws Exception {
+    dslvpElement = parameter;
+    doremiElement = doremiParent;
 
-	protected void method_computeDomainClass(final StringBuffer out, final PatternContext ctx) throws Exception {
-		DomainContainer domain_container = parameter.getThe_domain();
-		if (domain_container != null) {
-			AbstractClass aClass = domain_container.getThe_domain();
-			domainClass = aClass.getFQN();
-		} else
-			domainClass = "";
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "setParentMapping", out.toString());
+  }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "computeDomainClass", out.toString());
-	}
+  protected void method_computeDomainClass(final StringBuffer out, final PatternContext ctx) throws Exception {
+    DomainContainer domain_container = parameter.getThe_domain();
+    if (domain_container != null) {
+      AbstractClass aClass = domain_container.getThe_domain();
+      domainClass = aClass.getFQN();
+    } else
+      domainClass = "";
 
-	protected void method_createDoremiElement(final StringBuffer out, final PatternContext ctx) throws Exception {
-		// Creation of the sirius Diagram element
-		DiagramDescription dDiagram = DescriptionFactory.eINSTANCE.createDiagramDescription();
-		dDiagram.setName(parameter.getName());
-		dDiagram.setLabel(parameter.getName());
-		dDiagram.setDomainClass(domainClass);
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "computeDomainClass", out.toString());
+  }
 
-		EcoreProviderImpl eProvider = ViewpointResourceProviderRegistry.getInstance().getEcoreProvider();
-		if (eProvider != null) {
-			EPackage ePackage = eProvider.getEPackage();
-			dDiagram.getMetamodel().add(ePackage);
-		}
+  protected void method_createDoremiElement(final StringBuffer out, final PatternContext ctx) throws Exception {
+    // Creation of the sirius Diagram element
+    DiagramDescription dDiagram = DescriptionFactory.eINSTANCE.createDiagramDescription();
+    dDiagram.setName(parameter.getName());
+    dDiagram.setLabel(parameter.getName());
+    dDiagram.setDomainClass(domainClass);
 
-		// Creation of the default Layer
-		Layer dLayer = DescriptionFactory.eINSTANCE.createLayer();
-		String shortName = CoreModelHelper.getViewpointShortName(parameter);
-		shortName = StringUtils.getDisplayableShortName(shortName);
-		dLayer.setName(shortName);
-		dDiagram.setDefaultLayer(dLayer);
+    EcoreProviderImpl eProvider = ViewpointResourceProviderRegistry.getInstance().getEcoreProvider();
+    if (eProvider != null) {
+      EPackage ePackage = eProvider.getEPackage();
+      dDiagram.getMetamodel().add(ePackage);
+    }
 
-		doremiParent = dLayer;
+    // Creation of the default Layer
+    Layer dLayer = DescriptionFactory.eINSTANCE.createLayer();
+    String shortName = CoreModelHelper.getViewpointShortName(parameter);
+    shortName = StringUtils.getDisplayableShortName(shortName);
+    dLayer.setName(shortName);
+    dDiagram.setDefaultLayer(dLayer);
 
-		// Adding the diagram to the generated viewpoint
-		DoremiResourceManager.getGenerateViewpoint().getOwnedRepresentations().add(dDiagram);
+    doremiParent = dLayer;
 
-		// Get the reference SystemColorPalette.
-		Group grp = (Group) dDiagram.eContainer().eContainer();
-		GenerationUtil.setSytemColorsPalette(grp.getSystemColorsPalette());
+    // Adding the diagram to the generated viewpoint
+    DoremiResourceManager.getGenerateViewpoint().getOwnedRepresentations().add(dDiagram);
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "createDoremiElement", out.toString());
-	}
+    // Get the reference SystemColorPalette.
+    Group grp = (Group) dDiagram.eContainer().eContainer();
+    GenerationUtil.setSytemColorsPalette(grp.getSystemColorsPalette());
 
-	protected org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Diagram parameter;
+    InternalPatternContext ictx = (InternalPatternContext) ctx;
+    new Node.DataLeaf(ictx.getNode(), getClass(), "createDoremiElement", out.toString());
+  }
 
-	public void set_parameter(org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Diagram parameter) {
-		this.parameter = parameter;
-	}
+  protected org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Diagram parameter;
 
-	protected org.eclipse.emf.ecore.EObject doremiParent;
+  public void set_parameter(org.polarsys.kitalpha.ad.viewpoint.dsl.as.model.vpdiagram.Diagram parameter) {
+    this.parameter = parameter;
+  }
 
-	public void set_doremiParent(org.eclipse.emf.ecore.EObject doremiParent) {
-		this.doremiParent = doremiParent;
-	}
+  protected org.eclipse.emf.ecore.EObject doremiParent;
 
-	protected java.lang.String domainClass;
+  public void set_doremiParent(org.eclipse.emf.ecore.EObject doremiParent) {
+    this.doremiParent = doremiParent;
+  }
 
-	public void set_domainClass(java.lang.String domainClass) {
-		this.domainClass = domainClass;
-	}
+  protected java.lang.String domainClass;
 
-	public Map<String, Object> getParameters() {
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("parameter", this.parameter);
-		return parameters;
-	}
+  public void set_domainClass(java.lang.String domainClass) {
+    this.domainClass = domainClass;
+  }
+
+  public Map<String, Object> getParameters() {
+    Map<String, Object> parameters = new HashMap<String, Object>();
+    parameters.put("parameter", this.parameter);
+    return parameters;
+  }
 
 }
